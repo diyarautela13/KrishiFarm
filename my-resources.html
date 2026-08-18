@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Resources - KrishiFarm</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="nav-left">
+
+                <a href="dashboard.html">
+                    👨‍🌾 Farmer Dashboard
+                </a>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="resources.html">
+                    Resources
+                </a>
+
+                <a href="price-calculator.html">
+                    Fair Price Calculator
+                </a>
+
+                <a href="map.html">
+                    Map
+                </a>
+
+            </div>
+
+
+            <div class="language-container">
+
+                <span>🌐</span>
+
+                <select id="languageSelector">
+
+                    <option value="en">
+                        English
+                    </option>
+
+                    <option value="hi">
+                        हिन्दी
+                    </option>
+
+                </select>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="my-resources-page">
+
+
+        <section class="my-resources-header">
+
+            <h1>
+                🌾 My Resources
+            </h1>
+
+            <p>
+                Manage the agricultural resources you have listed on KrishiFarm.
+            </p>
+
+        </section>
+
+
+        <!-- Farmer Information -->
+
+        <section class="farmer-mini-profile">
+
+            <div>
+
+                <span>
+                    👨‍🌾
+                </span>
+
+                <div>
+
+                    <strong id="myResourceFarmerName">
+                        Farmer
+                    </strong>
+
+                    <p id="myResourceFarmerLocation">
+                        Location
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Resource Count -->
+
+        <div class="my-resource-top">
+
+            <h2>
+                Your Listed Resources
+            </h2>
+
+            <a
+                href="add-resource.html"
+                class="add-resource-dashboard-btn"
+            >
+                + Add Resource
+            </a>
+
+        </div>
+
+
+        <!-- Resources will appear here -->
+
+        <section
+            id="myResourcesContainer"
+            class="my-resources-grid"
+        >
+        </section>
+
+
+        <!-- No Resources -->
+
+        <section
+            id="noMyResources"
+            class="no-my-resources"
+        >
+
+            <div>
+                🌱
+            </div>
+
+            <h2>
+                You haven't added any resources yet
+            </h2>
+
+            <p>
+                Add your agricultural equipment, irrigation tools,
+                machines or crop residues to share with other farmers.
+            </p>
+
+            <a
+                href="add-resource.html"
+                class="add-resource-dashboard-btn"
+            >
+                + Add Your First Resource
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ================= EDIT RESOURCE MODAL ================= -->
+
+    <div
+        id="editResourceModal"
+        class="edit-resource-modal"
+    >
+
+        <div class="edit-resource-box">
+
+            <button
+                id="closeEditModal"
+                class="edit-close-btn"
+            >
+                &times;
+            </button>
+
+
+            <h2>
+                ✏️ Edit Resource
+            </h2>
+
+            <p class="edit-resource-name">
+                Editing:
+                <strong id="editResourceName">
+                    Resource
+                </strong>
+            </p>
+
+
+            <!-- Location -->
+
+            <label for="editResourceLocation">
+                Location
+            </label>
+
+            <input
+                type="text"
+                id="editResourceLocation"
+                placeholder="Enter resource location"
+            >
+
+
+            <!-- Price -->
+
+            <label for="editResourcePrice">
+                Price
+            </label>
+
+            <input
+                type="number"
+                id="editResourcePrice"
+                placeholder="Enter price"
+                min="0"
+            >
+
+
+            <div class="edit-buttons">
+
+                <button
+                    id="cancelEditResource"
+                    class="cancel-edit-btn"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    id="saveEditedResource"
+                    class="save-edit-btn"
+                >
+                    Save Changes
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+
+        <h3>
+            KrishiFarm 🌾
+        </h3>
+
+        <p>
+            Connecting rural communities through
+            resource sharing.
+        </p>
+
+        <p>
+            © 2026 KrishiFarm
+        </p>
+
+    </footer>
+
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>

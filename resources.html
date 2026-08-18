@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Resources - KrishiFarm</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="nav-left">
+
+                <a href="dashboard.html">
+                    👨‍🌾 Farmer Dashboard
+                </a>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="resources.html">
+                    Resources
+                </a>
+
+                <a href="price-calculator.html">
+                    Fair Price Calculator
+                </a>
+
+                <a href="map.html">
+                    Map
+                </a>
+
+            </div>
+
+
+            <div class="language-container">
+
+                <span>🌐</span>
+
+                <select id="languageSelector">
+
+                    <option value="en">
+                        English
+                    </option>
+
+                    <option value="hi">
+                        हिन्दी
+                    </option>
+
+                </select>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= RESOURCES HEADER ================= -->
+
+    <main class="resources-page">
+
+        <section class="resources-header">
+
+            <h1>
+                🌾 Agricultural Resources
+            </h1>
+
+            <p>
+                Find, rent, sell and exchange
+                resources with other farmers.
+            </p>
+
+        </section>
+
+
+        <!-- ================= SEARCH ================= -->
+
+        <section class="resource-search">
+
+            <input
+                type="text"
+                id="searchResource"
+                placeholder="🔍 Search resources..."
+            >
+
+
+            <select id="categoryFilter">
+
+                <option value="all">
+                    All Categories
+                </option>
+
+                <option value="Irrigation">
+                    💧 Irrigation
+                </option>
+
+                <option value="Equipment">
+                    🚜 Equipment
+                </option>
+
+                <option value="Tools">
+                    🛠️ Tools
+                </option>
+
+                <option value="Machines">
+                    ⚙️ Machines
+                </option>
+
+                <option value="Cattle Feed">
+                    🌾 Cattle Feed
+                </option>
+
+                <option value="Crop Residues">
+                    🌱 Crop Residues
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- ================= ADD RESOURCE ================= -->
+
+        <div class="add-resource-container">
+
+            <a
+                href="add-resource.html"
+                class="add-resource-btn"
+            >
+                + Add Your Resource
+            </a>
+
+        </div>
+
+
+        <!-- ================= RESOURCE COUNT ================= -->
+
+        <p
+            id="resourceCount"
+            class="resource-count"
+        >
+            Resources available: 0
+        </p>
+
+
+        <!-- ================= RESOURCE CARDS ================= -->
+
+        <section
+            id="resourceContainer"
+            class="resource-list"
+        >
+
+            <!-- JavaScript will insert resources here -->
+
+        </section>
+
+
+        <!-- ================= EMPTY MESSAGE ================= -->
+
+        <div
+            id="noResources"
+            class="no-resources"
+        >
+
+            <div>
+                🌱
+            </div>
+
+            <h2>
+                No Resources Found
+            </h2>
+
+            <p>
+                Try another search or add your
+                own agricultural resource.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <h3>
+            KrishiFarm 🌾
+        </h3>
+
+        <p>
+            Connecting rural communities through
+            resource sharing.
+        </p>
+
+        <p>
+            © 2026 KrishiFarm
+        </p>
+
+    </footer>
+
+
+    <!-- ================= MAIN JAVASCRIPT ================= -->
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>

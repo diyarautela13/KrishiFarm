@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Add Resource - KrishiFarm</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="nav-left">
+
+                <a href="dashboard.html">
+                    👨‍🌾 Farmer Dashboard
+                </a>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="resources.html">
+                    Resources
+                </a>
+
+                <a href="price-calculator.html">
+                    Fair Price Calculator
+                </a>
+
+                <a href="map.html">
+                    Map
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= ADD RESOURCE ================= -->
+
+    <main class="add-resource-page">
+
+        <section class="form-container">
+
+            <h1>
+                ➕ Add Your Resource
+            </h1>
+
+            <p>
+                Share your agricultural resource
+                with other farmers.
+            </p>
+
+
+            <form id="resourceForm">
+
+
+                <!-- RESOURCE NAME -->
+
+                <label for="resourceName">
+                    Resource Name
+                </label>
+
+                <input
+                    type="text"
+                    id="resourceName"
+                    placeholder="Example: Tractor"
+                    required
+                >
+
+
+                <!-- CATEGORY -->
+
+                <label for="resourceCategory">
+                    Category
+                </label>
+
+                <select
+                    id="resourceCategory"
+                    required
+                >
+
+                    <option value="">
+                        Select Category
+                    </option>
+
+                    <option value="Irrigation">
+                        💧 Irrigation
+                    </option>
+
+                    <option value="Equipment">
+                        🚜 Equipment
+                    </option>
+
+                    <option value="Tools">
+                        🛠️ Tools
+                    </option>
+
+                    <option value="Machines">
+                        ⚙️ Machines
+                    </option>
+
+                    <option value="Cattle Feed">
+                        🌾 Cattle Feed
+                    </option>
+
+                    <option value="Crop Residues">
+                        🌱 Crop Residues
+                    </option>
+
+                </select>
+
+
+                <!-- DESCRIPTION -->
+
+                <label for="resourceDescription">
+                    Description
+                </label>
+
+                <textarea
+                    id="resourceDescription"
+                    placeholder="Describe your resource..."
+                    rows="4"
+                    required
+                ></textarea>
+
+
+                <!-- LOCATION -->
+
+                <label for="resourceLocation">
+                    Resource Location
+                </label>
+
+                <input
+                    type="text"
+                    id="resourceLocation"
+                    placeholder="Example: Jaipur, Rajasthan"
+                    required
+                >
+
+
+                <!-- PRICE -->
+
+                <label for="resourcePrice">
+                    Price (₹)
+                </label>
+
+                <input
+                    type="number"
+                    id="resourcePrice"
+                    placeholder="Enter price"
+                    min="0"
+                    required
+                >
+
+
+                <!-- RESOURCE TYPE -->
+
+                <label for="resourceType">
+                    What do you want to do with this resource?
+                </label>
+
+                <select
+                    id="resourceType"
+                    required
+                >
+
+                    <option value="">
+                        Select Option
+                    </option>
+
+                    <option value="Rent">
+                        Rent
+                    </option>
+
+                    <option value="Sell">
+                        Sell
+                    </option>
+
+                    <option value="Exchange">
+                        Exchange
+                    </option>
+
+                </select>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="submit-resource-btn"
+                >
+                    Add Resource
+                </button>
+
+
+                <a
+                    href="resources.html"
+                    class="cancel-btn"
+                >
+                    Cancel
+                </a>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <h3>
+            KrishiFarm 🌾
+        </h3>
+
+        <p>
+            Connecting rural communities through
+            resource sharing.
+        </p>
+
+    </footer>
+
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>

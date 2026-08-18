@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Book Resource - KrishiFarm</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="nav-left">
+
+                <a href="dashboard.html">
+                    👨‍🌾 Farmer Dashboard
+                </a>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="resources.html">
+                    Resources
+                </a>
+
+                <a href="price-calculator.html">
+                    Fair Price Calculator
+                </a>
+
+                <a href="map.html">
+                    Map
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= BOOKING PAGE ================= -->
+
+    <main class="booking-page">
+
+        <section class="booking-container">
+
+            <h1>
+                📅 Book Resource
+            </h1>
+
+
+            <!-- RESOURCE DETAILS -->
+
+            <div
+                id="bookingDetails"
+                class="booking-details"
+            >
+
+                <!-- JavaScript will insert
+                     resource information here -->
+
+            </div>
+
+
+            <!-- ================= BOOKING FORM ================= -->
+
+            <div class="booking-form">
+
+
+                <!-- BOOKING DATE -->
+
+                <label for="bookingDate">
+                    Booking Date
+                </label>
+
+                <input
+                    type="date"
+                    id="bookingDate"
+                    required
+                >
+
+
+                <!-- ================= RENT SECTION ================= -->
+
+                <div
+                    id="rentSection"
+                    class="booking-section"
+                >
+
+                    <h3>
+                        🔄 Rental Details
+                    </h3>
+
+
+                    <!-- DURATION -->
+
+                    <label>
+                        Duration
+                    </label>
+
+                    <div class="duration-row">
+
+                        <input
+                            type="number"
+                            id="durationValue"
+                            min="1"
+                            value="1"
+                            placeholder="Enter duration"
+                        >
+
+
+                        <select
+                            id="durationUnit"
+                        >
+
+                            <option value="hours">
+                                Hours
+                            </option>
+
+                            <option value="days">
+                                Days
+                            </option>
+
+                            <option value="months">
+                                Months
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- QUANTITY -->
+
+                    <label for="quantityKg">
+                        Quantity (kg)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="quantityKg"
+                        min="1"
+                        value="1"
+                        placeholder="Enter quantity in kg"
+                    >
+
+                </div>
+
+
+                <!-- ================= SELL SECTION ================= -->
+
+                <div
+                    id="sellSection"
+                    class="booking-section"
+                >
+
+                    <h3>
+                        🛒 Purchase Details
+                    </h3>
+
+
+                    <label for="sellQuantityKg">
+                        Quantity (kg)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="sellQuantityKg"
+                        min="1"
+                        value="1"
+                        placeholder="Enter quantity in kg"
+                    >
+
+                </div>
+
+
+                <!-- ================= EXCHANGE SECTION ================= -->
+
+                <div
+                    id="exchangeSection"
+                    class="booking-section"
+                >
+
+                    <h3>
+                        🔄 Exchange Details
+                    </h3>
+
+
+                    <label for="exchangeQuantityKg">
+                        Quantity (kg)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="exchangeQuantityKg"
+                        min="1"
+                        value="1"
+                        placeholder="Enter quantity in kg"
+                    >
+
+
+                    <label for="exchangeResource">
+                        What resource do you want to exchange?
+                    </label>
+
+                    <input
+                        type="text"
+                        id="exchangeResource"
+                        placeholder="Example: Wheat, Rice, Tools..."
+                    >
+
+                </div>
+
+
+                <!-- ================= BUTTON ================= -->
+
+                <button
+                    id="proceedBooking"
+                    class="proceed-btn"
+                >
+                    Proceed to Confirm Booking
+                </button>
+
+
+                <a
+                    href="resources.html"
+                    class="back-btn"
+                >
+                    ← Back to Resources
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h3>
+            KrishiFarm 🌾
+        </h3>
+
+        <p>
+            Connecting rural communities through
+            resource sharing.
+        </p>
+
+        <p>
+            © 2026 KrishiFarm
+        </p>
+
+    </footer>
+
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>

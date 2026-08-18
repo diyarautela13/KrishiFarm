@@ -1,0 +1,3604 @@
+/* =====================================================
+   GLOBAL
+   ===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+
+    background-color: #f5f8f2;
+
+    color: #263b29;
+
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   NAVBAR
+   ===================================================== */
+
+.navbar {
+
+    min-height: 70px;
+
+    background-color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.08);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.nav-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+}
+
+
+.nav-left a {
+
+    text-decoration: none;
+
+    color: #263b29;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+
+.nav-left a:hover {
+
+    color: #3d8b40;
+}
+
+
+/* =====================================================
+   LANGUAGE
+   ===================================================== */
+
+.language-container {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+}
+
+
+.language-container select {
+
+    padding: 8px 10px;
+
+    border:
+        1px solid #cbd8ca;
+
+    border-radius: 6px;
+
+    background-color: white;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   LOGIN POPUP
+   ===================================================== */
+
+.login-overlay {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background-color:
+        rgba(0, 0, 0, 0.65);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 1000;
+}
+
+
+.login-box {
+
+    width: 430px;
+
+    max-width: 90%;
+
+    background-color: white;
+
+    border-radius: 18px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    position: relative;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+.close-btn {
+
+    position: absolute;
+
+    top: 10px;
+
+    right: 15px;
+
+    border: none;
+
+    background: none;
+
+    font-size: 32px;
+
+    cursor: pointer;
+
+    color: #555;
+}
+
+
+.close-btn:hover {
+
+    color: #c62828;
+}
+
+
+.login-icon {
+
+    font-size: 55px;
+
+    margin-bottom: 10px;
+}
+
+
+.login-box h2 {
+
+    color: #2e6b34;
+
+    margin-bottom: 10px;
+}
+
+
+.login-box > p {
+
+    color: #687568;
+
+    margin-bottom: 25px;
+}
+
+
+#farmerForm {
+
+    text-align: left;
+}
+
+
+#farmerForm h3 {
+
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    color: #2e6b34;
+}
+
+
+#farmerForm label {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-weight: 600;
+}
+
+
+#farmerForm input {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-bottom: 17px;
+
+    border:
+        1px solid #cbd8ca;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+
+#farmerForm input:focus {
+
+    border-color: #3d8b40;
+}
+
+
+.continue-btn {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #3d8b40;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.continue-btn:hover {
+
+    background-color: #2f7132;
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+/* =====================================================
+   KRISHIFARM HERO
+   ===================================================== */
+
+.hero {
+    position: relative;
+    min-height: 500px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: white;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.42),
+            rgba(0, 0, 0, 0.42)
+        ),
+        url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* =====================================================
+   HERO BUTTONS
+   ===================================================== */
+
+.primary-btn,
+.secondary-btn {
+
+    display: inline-block;
+
+    padding: 13px 25px;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+/* =====================================================
+   1. EXPLORE RESOURCES
+   ===================================================== */
+
+.primary-btn {
+
+    background: #4caf50;
+
+    color: white;
+
+    border: none;
+}
+
+
+.primary-btn:hover {
+
+    background: #43a047;
+
+}
+
+
+/* =====================================================
+   2. FIND NEARBY RESOURCES
+   ===================================================== */
+
+.secondary-btn {
+
+    background: white;
+
+    color: #333;
+
+    border: none;
+}
+
+
+.secondary-btn:hover {
+
+    background: #f1f1f1;
+
+}
+/* =====================================================
+   HOW IT WORKS
+   ===================================================== */
+
+.how-section {
+
+    padding: 70px 7%;
+
+    text-align: center;
+
+    background-color: white;
+}
+
+
+.how-section h2,
+.resources-section h2 {
+
+    font-size: 35px;
+
+    margin-bottom: 10px;
+}
+
+
+.section-subtitle {
+
+    color: #687568;
+
+    margin-bottom: 45px;
+}
+
+
+.steps {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 30px;
+
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+
+.step-card {
+
+    width: 280px;
+
+    padding: 30px 20px;
+
+    border-radius: 15px;
+
+    background-color: #f5f8f2;
+
+    position: relative;
+
+    transition: 0.3s;
+}
+
+
+.step-card:hover {
+
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+.step-number {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    width: 30px;
+
+    height: 30px;
+
+    border-radius: 50%;
+
+    background-color: #3d8b40;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+
+.step-icon {
+
+    font-size: 45px;
+
+    margin: 15px 0;
+}
+
+
+.step-card h3 {
+
+    margin-bottom: 12px;
+
+    font-size: 22px;
+}
+
+
+.step-card p {
+
+    color: #657064;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   RESOURCE SECTION
+   ===================================================== */
+
+.resources-section {
+
+    padding: 70px 7%;
+
+    text-align: center;
+
+    background-color: #eef5ea;
+}
+
+
+.resource-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+
+    max-width: 1100px;
+
+    margin: 40px auto 0;
+}
+
+
+.resource-card {
+
+    background-color: white;
+
+    padding: 30px 20px;
+
+    border-radius: 15px;
+
+    transition: 0.3s;
+}
+
+
+.resource-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+.resource-card span {
+
+    font-size: 45px;
+}
+
+
+.resource-card h3 {
+
+    margin: 15px 0 10px;
+
+    font-size: 21px;
+}
+
+
+.resource-card p {
+
+    color: #657064;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+}
+
+
+.resource-card button {
+
+    border: none;
+
+    background-color: #3d8b40;
+
+    color: white;
+
+    padding: 10px 20px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+.resource-card button:hover {
+
+    background-color: #2f7132;
+}
+
+
+/* =====================================================
+   CTA
+   ===================================================== */
+
+.cta-section {
+
+    padding: 70px 20px;
+
+    text-align: center;
+
+    background-color: #dfeeda;
+}
+
+
+.cta-section h2 {
+
+    font-size: 32px;
+
+    margin-bottom: 15px;
+}
+
+
+.cta-section p {
+
+    margin-bottom: 25px;
+
+    color: #586455;
+}
+
+
+.cta-btn {
+
+    padding: 14px 30px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #3d8b40;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   DASHBOARD
+   ===================================================== */
+
+.dashboard-page {
+
+    padding: 50px 7%;
+
+    min-height: 700px;
+}
+
+
+.dashboard-header {
+
+    text-align: center;
+
+    margin-bottom: 40px;
+}
+
+
+.dashboard-header h1 {
+
+    font-size: 40px;
+
+    color: #2e6b34;
+
+    margin-bottom: 10px;
+}
+
+
+.dashboard-header p {
+
+    color: #687568;
+}
+
+
+/* =====================================================
+   FARMER PROFILE
+   ===================================================== */
+
+.farmer-profile {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    padding: 30px;
+
+    background-color: white;
+
+    border-radius: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.07);
+
+    margin-bottom: 40px;
+}
+
+
+.profile-icon {
+
+    width: 90px;
+
+    height: 90px;
+
+    border-radius: 50%;
+
+    background-color: #e3f0df;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 45px;
+}
+
+
+.profile-information h2 {
+
+    color: #2e6b34;
+
+    margin-bottom: 8px;
+}
+
+
+.profile-information p {
+
+    color: #687568;
+}
+
+
+/* =====================================================
+   FARMER DETAILS
+   ===================================================== */
+
+.details-section {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    margin-bottom: 50px;
+}
+
+
+.details-section > h2 {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+    font-size: 28px;
+}
+
+
+.details-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+.detail-card {
+
+    background-color: white;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.06);
+}
+
+
+.detail-icon {
+
+    font-size: 35px;
+}
+
+
+.detail-card h3 {
+
+    font-size: 16px;
+
+    color: #687568;
+
+    margin-bottom: 7px;
+}
+
+
+.detail-card p {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: #2e6b34;
+
+    word-break: break-word;
+}
+
+
+/* =====================================================
+   ACTIVITY
+   ===================================================== */
+
+.activity-section {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+
+.activity-section > h2 {
+
+    font-size: 28px;
+
+    margin-bottom: 25px;
+}
+
+
+.activity-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+.activity-card {
+
+    background-color: white;
+
+    padding: 30px 20px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.06);
+}
+
+
+.activity-card > span {
+
+    font-size: 40px;
+}
+
+
+.activity-card h3 {
+
+    margin: 15px 0 10px;
+}
+
+
+.activity-card p {
+
+    color: #687568;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+}
+
+
+.activity-card button {
+
+    border: none;
+
+    padding: 10px 18px;
+
+    border-radius: 7px;
+
+    background-color: #3d8b40;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   NO DATA
+   ===================================================== */
+
+.no-data {
+
+    display: none;
+
+    max-width: 600px;
+
+    margin: 50px auto;
+
+    text-align: center;
+
+    background-color: white;
+
+    padding: 40px;
+
+    border-radius: 15px;
+}
+
+
+.no-data h2 {
+
+    color: #c62828;
+
+    margin-bottom: 10px;
+}
+
+
+.no-data p {
+
+    margin-bottom: 20px;
+}
+
+
+.no-data a {
+
+    display: inline-block;
+
+    padding: 12px 20px;
+
+    background-color: #3d8b40;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 7px;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+footer {
+
+    background-color: #263b29;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 35px 20px;
+}
+
+
+footer h3 {
+
+    margin-bottom: 10px;
+
+    font-size: 24px;
+}
+
+
+footer p {
+
+    margin: 7px 0;
+
+    color: #d5dfd5;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    .nav-left {
+
+        gap: 12px;
+    }
+
+
+    .nav-left a {
+
+        font-size: 13px;
+    }
+
+
+    .resource-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .steps {
+
+        flex-wrap: wrap;
+    }
+
+
+    .details-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .activity-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .navbar {
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 15px;
+    }
+
+
+    .nav-left {
+
+        justify-content: center;
+    }
+
+
+    .hero h1 {
+
+        font-size: 45px;
+    }
+
+
+    .hero-description {
+
+        font-size: 16px;
+    }
+
+
+    .resource-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .farmer-profile {
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+
+    .login-box {
+
+        padding: 30px 20px;
+    }
+
+}
+/* =====================================================
+   RESOURCES PAGE
+   ===================================================== */
+
+.resources-page {
+
+    padding: 50px 7%;
+
+    min-height: 700px;
+}
+
+
+.resources-header {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+
+.resources-header h1 {
+
+    font-size: 40px;
+
+    color: #2e6b34;
+
+    margin-bottom: 10px;
+}
+
+
+.resources-header p {
+
+    color: #687568;
+
+    font-size: 17px;
+}
+
+
+/* SEARCH */
+
+.resource-search {
+
+    max-width: 900px;
+
+    margin: auto;
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+
+.resource-search input {
+
+    flex: 1;
+
+    padding: 14px;
+
+    border:
+        1px solid #cbd8ca;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+
+.resource-search select {
+
+    padding: 14px;
+
+    border:
+        1px solid #cbd8ca;
+
+    border-radius: 8px;
+
+    background-color: white;
+
+    font-size: 15px;
+}
+
+
+/* ADD RESOURCE */
+
+.add-resource-container {
+
+    max-width: 900px;
+
+    margin: 0 auto 25px;
+
+    text-align: right;
+}
+
+
+.add-resource-btn {
+
+    display: inline-block;
+
+    padding: 13px 22px;
+
+    background-color: #3d8b40;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
+
+
+.add-resource-btn:hover {
+
+    background-color: #2f7132;
+}
+
+
+/* COUNT */
+
+.resource-count {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    margin-bottom: 20px;
+
+    color: #687568;
+
+    font-weight: bold;
+}
+
+
+/* RESOURCE LIST */
+
+.resource-list {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+/* RESOURCE CARD */
+
+.resource-item {
+
+    background-color: white;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.07);
+
+    transition: 0.3s;
+}
+
+
+.resource-item:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+
+.resource-item .resource-icon {
+
+    font-size: 45px;
+
+    margin-bottom: 10px;
+}
+
+
+.resource-item h2 {
+
+    color: #2e6b34;
+
+    margin-bottom: 8px;
+}
+
+
+.resource-category {
+
+    display: inline-block;
+
+    background-color: #e3f0df;
+
+    color: #2e6b34;
+
+    padding: 5px 10px;
+
+    border-radius: 15px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+}
+
+
+.resource-description {
+
+    color: #657064;
+
+    line-height: 1.5;
+
+    min-height: 55px;
+
+    margin-bottom: 15px;
+}
+
+
+.resource-info {
+
+    border-top:
+        1px solid #e5ebe3;
+
+    padding-top: 15px;
+
+    margin-bottom: 15px;
+}
+
+
+.resource-info p {
+
+    margin: 7px 0;
+
+    color: #4f5d50;
+}
+
+
+.book-resource-btn {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #3d8b40;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.book-resource-btn:hover {
+
+    background-color: #2f7132;
+}
+
+
+/* EMPTY */
+
+.no-resources {
+
+    display: none;
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+    color: #687568;
+}
+
+
+.no-resources div {
+
+    font-size: 50px;
+
+    margin-bottom: 15px;
+}
+
+
+/* =====================================================
+   ADD RESOURCE PAGE
+   ===================================================== */
+
+.add-resource-page {
+
+    min-height: 750px;
+
+    padding: 50px 20px;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+
+.form-container {
+
+    width: 600px;
+
+    max-width: 100%;
+
+    background-color: white;
+
+    padding: 40px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+.form-container h1 {
+
+    color: #2e6b34;
+
+    margin-bottom: 10px;
+
+    text-align: center;
+}
+
+
+.form-container > p {
+
+    text-align: center;
+
+    color: #687568;
+
+    margin-bottom: 30px;
+}
+
+
+.form-container label {
+
+    display: block;
+
+    margin: 15px 0 6px;
+
+    font-weight: bold;
+}
+
+
+.form-container input,
+.form-container select,
+.form-container textarea {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border:
+        1px solid #cbd8ca;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    font-family: inherit;
+
+    outline: none;
+}
+
+
+.form-container textarea {
+
+    resize: vertical;
+}
+
+
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+
+    border-color: #3d8b40;
+}
+
+
+.submit-resource-btn {
+
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #3d8b40;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.submit-resource-btn:hover {
+
+    background-color: #2f7132;
+}
+
+
+.cancel-btn {
+
+    display: block;
+
+    text-align: center;
+
+    margin-top: 15px;
+
+    color: #687568;
+
+    text-decoration: none;
+}
+
+
+/* =====================================================
+   BOOKING PAGE
+   ===================================================== */
+
+.booking-page {
+
+    min-height: 700px;
+
+    padding: 60px 20px;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+
+.booking-container {
+
+    width: 650px;
+
+    max-width: 100%;
+
+    background-color: white;
+
+    padding: 40px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+.booking-container > h1 {
+
+    text-align: center;
+
+    color: #2e6b34;
+
+    margin-bottom: 30px;
+}
+
+
+.booking-details {
+
+    background-color: #f3f8f0;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    margin-bottom: 30px;
+}
+
+
+.booking-details h2 {
+
+    color: #2e6b34;
+
+    margin-bottom: 15px;
+}
+
+
+.booking-details p {
+
+    margin: 10px 0;
+
+    color: #4f5d50;
+}
+
+
+.booking-price {
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    color: #2e6b34;
+
+    margin-top: 20px;
+}
+
+
+.booking-form label {
+
+    display: block;
+
+    margin: 15px 0 6px;
+
+    font-weight: bold;
+}
+
+
+.booking-form input {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border:
+        1px solid #cbd8ca;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+}
+
+
+.proceed-btn {
+
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 25px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #3d8b40;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.proceed-btn:hover {
+
+    background-color: #2f7132;
+}
+
+
+.back-btn {
+
+    display: block;
+
+    text-align: center;
+
+    margin-top: 15px;
+
+    text-decoration: none;
+
+    color: #687568;
+}
+
+
+/* =====================================================
+   CONFIRM BOOKING
+   ===================================================== */
+
+.confirmation-page {
+
+    min-height: 700px;
+
+    padding: 60px 20px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+}
+
+
+.confirmation-container {
+
+    width: 650px;
+
+    max-width: 100%;
+
+    background-color: white;
+
+    padding: 45px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+
+    text-align: center;
+}
+
+
+.confirmation-icon {
+
+    font-size: 55px;
+
+    margin-bottom: 15px;
+}
+
+
+.confirmation-container h1 {
+
+    color: #2e6b34;
+
+    margin-bottom: 10px;
+}
+
+
+.confirmation-container > p {
+
+    color: #687568;
+
+    margin-bottom: 25px;
+}
+
+
+.confirmation-details {
+
+    text-align: left;
+
+    background-color: #f3f8f0;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    margin: 25px 0;
+}
+
+
+.confirmation-details p {
+
+    margin: 10px 0;
+}
+
+
+.confirm-btn {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #3d8b40;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.confirm-btn:hover {
+
+    background-color: #2f7132;
+}
+
+
+/* SUCCESS */
+
+.success-area {
+
+    display: none;
+}
+
+
+.success-icon {
+
+    font-size: 75px;
+
+    margin-bottom: 15px;
+}
+
+
+.success-area h1 {
+
+    color: #2e6b34;
+
+    margin-bottom: 15px;
+}
+
+
+.success-area p {
+
+    color: #687568;
+
+    margin-bottom: 20px;
+}
+
+
+.booking-id {
+
+    background-color: #f3f8f0;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    margin-bottom: 25px;
+
+    font-weight: bold;
+
+    color: #2e6b34;
+}
+
+
+.home-btn,
+.dashboard-btn {
+
+    display: block;
+
+    padding: 13px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    margin-top: 12px;
+}
+
+
+.home-btn {
+
+    background-color: #3d8b40;
+
+    color: white;
+}
+
+
+.dashboard-btn {
+
+    background-color: #e3f0df;
+
+    color: #2e6b34;
+}
+
+
+/* =====================================================
+   RESOURCE RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    .resource-list {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .resource-list {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .resource-search {
+
+        flex-direction: column;
+    }
+
+
+    .form-container,
+    .booking-container,
+    .confirmation-container {
+
+        padding: 25px 20px;
+    }
+
+}
+/* =====================================================
+   BOOKING SECTIONS
+   ===================================================== */
+
+.booking-section {
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    background-color: #f3f8f0;
+
+    border-radius: 12px;
+
+}
+
+
+.booking-section h3 {
+
+    margin-top: 0;
+
+    margin-bottom: 20px;
+
+    color: #2e6b34;
+
+}
+
+
+/* Duration row */
+
+.duration-row {
+
+    display: flex;
+
+    gap: 10px;
+
+    width: 100%;
+
+}
+
+
+.duration-row input {
+
+    flex: 1;
+
+}
+
+
+.duration-row select {
+
+    flex: 1;
+
+    padding: 12px;
+
+    border:
+        1px solid #cbd8ca;
+
+    border-radius: 7px;
+
+    background-color: white;
+
+    font-size: 15px;
+
+}
+
+
+/* Inputs */
+
+.booking-section input {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border:
+        1px solid #cbd8ca;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    box-sizing: border-box;
+
+}
+
+
+.booking-section label {
+
+    display: block;
+
+    margin-top: 15px;
+
+    margin-bottom: 6px;
+
+    font-weight: bold;
+
+    color: #405140;
+
+}
+
+
+/* Hide sections */
+
+#rentSection,
+#sellSection,
+#exchangeSection {
+
+    display: none;
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .duration-row {
+
+        flex-direction: column;
+
+    }
+
+}
+/* =====================================================
+   HOMEPAGE RESOURCE SEARCH
+   ===================================================== */
+
+.homepage-resource-search {
+
+    position: relative;
+
+    width: 100%;
+
+    margin-top: -55px;
+
+    z-index: 10;
+
+    display: flex;
+
+    justify-content: center;
+
+}
+
+
+.resource-search-box {
+
+    width: 85%;
+
+    max-width: 1100px;
+
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 25px 30px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.15);
+
+}
+
+
+.resource-search-box h2 {
+
+    margin: 0 0 18px 0;
+
+    font-size: 25px;
+
+    color: #222;
+
+}
+
+
+/* =========================
+   SEARCH ROW
+   ========================= */
+
+.search-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+/* =========================
+   SEARCH INPUT
+   ========================= */
+
+.search-input-wrapper {
+
+    flex: 1;
+
+    position: relative;
+
+}
+
+
+.search-icon {
+
+    position: absolute;
+
+    left: 15px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 16px;
+
+}
+
+
+.search-input-wrapper input {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 14px 15px 14px 45px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 15px;
+
+}
+
+
+.search-input-wrapper input:focus {
+
+    border-color: #4caf50;
+
+    box-shadow:
+        0 0 0 2px rgba(76, 175, 80, 0.1);
+
+}
+
+
+/* =========================
+   DROPDOWNS
+   ========================= */
+
+.search-row select {
+
+    padding: 14px 15px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    background: white;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    min-width: 150px;
+
+    outline: none;
+
+}
+
+
+.search-row select:focus {
+
+    border-color: #4caf50;
+
+}
+
+
+/* =========================
+   SEARCH BUTTON
+   ========================= */
+
+.home-search-btn {
+
+    padding: 14px 25px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #4caf50;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.home-search-btn:hover {
+
+    background: #388e3c;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 800px) {
+
+    .homepage-resource-search {
+
+        margin-top: -30px;
+
+    }
+
+
+    .resource-search-box {
+
+        width: 90%;
+
+        padding: 20px;
+
+    }
+
+
+    .search-row {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .search-row select,
+    .home-search-btn {
+
+        width: 100%;
+
+    }
+
+}
+/* =====================================================
+   MY RESOURCES PAGE
+   ===================================================== */
+
+.my-resources-page {
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 45px 25px 70px;
+
+}
+
+
+/* ================= HEADER ================= */
+
+.my-resources-header {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+}
+
+
+.my-resources-header h1 {
+
+    font-size: 38px;
+
+    margin-bottom: 10px;
+
+    color: #2e7d32;
+
+}
+
+
+.my-resources-header p {
+
+    color: #666;
+
+    font-size: 16px;
+
+}
+
+
+/* ================= FARMER PROFILE ================= */
+
+.farmer-mini-profile {
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 18px 22px;
+
+    margin-bottom: 30px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.08);
+
+}
+
+
+.farmer-mini-profile > div {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+.farmer-mini-profile > div > span {
+
+    font-size: 40px;
+
+}
+
+
+.farmer-mini-profile strong {
+
+    font-size: 18px;
+
+}
+
+
+.farmer-mini-profile p {
+
+    margin: 4px 0 0;
+
+    color: #777;
+
+}
+
+
+/* ================= TOP BAR ================= */
+
+.my-resource-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+.my-resource-top h2 {
+
+    margin: 0;
+
+    color: #333;
+
+}
+
+
+.add-resource-dashboard-btn {
+
+    display: inline-block;
+
+    background: #4caf50;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 11px 18px;
+
+    border-radius: 7px;
+
+    font-weight: 600;
+
+}
+
+
+.add-resource-dashboard-btn:hover {
+
+    background: #388e3c;
+
+}
+
+
+/* ================= RESOURCE GRID ================= */
+
+.my-resources-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 22px;
+
+}
+
+
+/* ================= RESOURCE CARD ================= */
+
+.my-resource-card {
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.09);
+
+    border: 1px solid #eee;
+
+}
+
+
+.my-resource-icon {
+
+    font-size: 40px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.my-resource-card h3 {
+
+    margin: 5px 0 8px;
+
+    font-size: 22px;
+
+}
+
+
+.my-resource-category {
+
+    display: inline-block;
+
+    background: #e8f5e9;
+
+    color: #2e7d32;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.my-resource-description {
+
+    color: #666;
+
+    line-height: 1.5;
+
+}
+
+
+.my-resource-info {
+
+    margin-top: 15px;
+
+    border-top: 1px solid #eee;
+
+    padding-top: 12px;
+
+}
+
+
+.my-resource-info p {
+
+    margin: 8px 0;
+
+    color: #444;
+
+}
+
+
+/* ================= TYPE ================= */
+
+.resource-type-rent {
+
+    color: #1565c0;
+
+    font-weight: 600;
+
+}
+
+
+.resource-type-sell {
+
+    color: #2e7d32;
+
+    font-weight: 600;
+
+}
+
+
+.resource-type-exchange {
+
+    color: #8e24aa;
+
+    font-weight: 600;
+
+}
+
+
+/* ================= EDIT BUTTON ================= */
+
+.edit-resource-btn {
+
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 11px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #eeeeee;
+
+    color: #333;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.edit-resource-btn:hover {
+
+    background: #ddd;
+
+}
+
+
+/* ================= NO RESOURCES ================= */
+
+.no-my-resources {
+
+    text-align: center;
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 50px 25px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.07);
+
+}
+
+
+.no-my-resources > div {
+
+    font-size: 55px;
+
+}
+
+
+.no-my-resources h2 {
+
+    margin-bottom: 10px;
+
+}
+
+
+.no-my-resources p {
+
+    max-width: 600px;
+
+    margin: 0 auto 25px;
+
+    color: #666;
+
+    line-height: 1.6;
+
+}
+
+
+/* ================= EDIT MODAL ================= */
+
+.edit-resource-modal {
+
+    display: none;
+
+    position: fixed;
+
+    z-index: 10000;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        rgba(0,0,0,0.55);
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+.edit-resource-box {
+
+    position: relative;
+
+    width: 420px;
+
+    max-width: 90%;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.25);
+
+}
+
+
+.edit-resource-box h2 {
+
+    margin-top: 0;
+
+}
+
+
+.edit-resource-name {
+
+    color: #666;
+
+    margin-bottom: 20px;
+
+}
+
+
+.edit-resource-box label {
+
+    display: block;
+
+    margin-top: 15px;
+
+    margin-bottom: 6px;
+
+    font-weight: 600;
+
+}
+
+
+.edit-resource-box input {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    outline: none;
+
+}
+
+
+.edit-resource-box input:focus {
+
+    border-color: #4caf50;
+
+}
+
+
+/* ================= CLOSE ================= */
+
+.edit-close-btn {
+
+    position: absolute;
+
+    right: 15px;
+
+    top: 10px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+}
+
+
+.edit-close-btn:hover {
+
+    color: red;
+
+}
+
+
+/* ================= EDIT BUTTONS ================= */
+
+.edit-buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 25px;
+
+}
+
+
+.edit-buttons button {
+
+    flex: 1;
+
+    padding: 12px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+}
+
+
+.cancel-edit-btn {
+
+    background: #eee;
+
+    border: none;
+
+}
+
+
+.save-edit-btn {
+
+    background: #4caf50;
+
+    color: white;
+
+    border: none;
+
+}
+
+
+.save-edit-btn:hover {
+
+    background: #388e3c;
+
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .my-resource-top {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+    }
+
+}
+/* =========================================
+   VIEW RESOURCES BUTTON
+   ========================================= */
+
+.activity-button {
+    display: inline-block;
+    text-decoration: none;
+    background: #2e7d32;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover effect */
+
+.activity-button:hover {
+    background: #1b5e20;
+    transform: translateY(-2px);
+}
+
+/* Click effect */
+
+.activity-button:active {
+    transform: translateY(0);
+}
+/* =====================================================
+   MY BOOKINGS
+   ===================================================== */
+
+.my-bookings-section {
+    margin: 40px auto;
+    max-width: 1200px;
+    padding: 30px;
+}
+
+
+.section-heading {
+    margin-bottom: 25px;
+}
+
+
+.section-heading h2 {
+    font-size: 30px;
+    margin-bottom: 8px;
+    color: #2e7d32;
+}
+
+
+.section-heading p {
+    color: #666;
+    margin: 0;
+}
+
+
+.my-bookings-container {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(320px, 1fr)
+    );
+    gap: 25px;
+}
+
+
+.my-booking-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e5e5;
+}
+
+
+.my-booking-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+
+.my-booking-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    background: #e8f5e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+
+.my-booking-header h3 {
+    margin: 0 0 5px;
+    font-size: 21px;
+}
+
+
+.booking-id-text {
+    font-size: 13px;
+    color: #777;
+}
+
+
+.my-booking-details {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+
+.my-booking-details p {
+    margin: 10px 0;
+    color: #555;
+}
+
+
+.my-booking-details strong {
+    color: #333;
+}
+
+
+.my-booking-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 18px;
+}
+
+
+.booking-status {
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+.booking-confirmed {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+
+.booking-cancelled {
+    background: #ffebee;
+    color: #c62828;
+}
+
+
+.cancel-booking-btn {
+    border: none;
+    background: #d32f2f;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.cancel-booking-btn:hover {
+    background: #b71c1c;
+}
+
+
+.cancelled-text {
+    color: #c62828;
+    font-weight: bold;
+}
+
+
+.no-my-bookings {
+    text-align: center;
+    padding: 50px 20px;
+    background: #fafafa;
+    border-radius: 15px;
+}
+
+
+.no-booking-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+
+.no-my-bookings h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+
+.no-my-bookings p {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+
+.browse-resources-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #2e7d32;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+
+.browse-resources-btn:hover {
+    background: #1b5e20;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .my-bookings-section {
+        padding: 20px;
+    }
+
+
+    .my-bookings-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .my-booking-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+    .cancel-booking-btn {
+        width: 100%;
+    }
+
+}
+/* =====================================================
+   MY BOOKINGS PAGE
+   ===================================================== */
+
+.my-bookings-page {
+    min-height: 75vh;
+    padding: 50px 8%;
+    background: #f4f8f3;
+}
+
+
+.my-bookings-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+
+.my-bookings-header {
+    margin-bottom: 25px;
+}
+
+
+.my-bookings-header h1 {
+    color: #176b36;
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+
+.my-bookings-header p {
+    color: #666;
+    font-size: 17px;
+}
+
+
+.booking-count {
+    display: inline-block;
+    background: #e1f2e5;
+    color: #176b36;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+
+/* ================= BOOKING GRID ================= */
+
+.my-bookings-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(330px, 1fr)
+    );
+    gap: 25px;
+}
+
+
+/* ================= BOOKING CARD ================= */
+
+.my-booking-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(
+        0,
+        0,
+        0,
+        0.08
+    );
+
+    border: 1px solid #e3e3e3;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.my-booking-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 8px 25px rgba(
+        0,
+        0,
+        0,
+        0.12
+    );
+}
+
+
+/* ================= TOP ================= */
+
+.booking-card-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #eee;
+}
+
+
+.booking-resource-icon {
+    width: 60px;
+    height: 60px;
+
+    background: #e9f6eb;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+}
+
+
+.booking-category {
+    color: #268a45;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+.booking-card-top h2 {
+    margin: 5px 0 0;
+
+    color: #222;
+
+    font-size: 23px;
+}
+
+
+/* ================= DETAILS ================= */
+
+.booking-details {
+    padding: 18px 0;
+}
+
+
+.booking-detail-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 8px 0;
+
+    font-size: 14px;
+}
+
+
+.booking-detail-row strong {
+    color: #555;
+}
+
+
+.booking-detail-row span {
+    color: #222;
+
+    text-align: right;
+}
+
+
+.total-row {
+    margin-top: 10px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #ddd;
+
+    font-size: 17px;
+}
+
+
+.total-row span {
+    color: #176b36;
+
+    font-weight: bold;
+}
+
+
+/* ================= BOTTOM ================= */
+
+.booking-card-bottom {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #eee;
+}
+
+
+/* ================= STATUS ================= */
+
+.booking-status {
+    display: inline-block;
+
+    padding: 7px 14px;
+
+    border-radius: 20px;
+
+    background: #dff4e4;
+
+    color: #197238;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+.booking-status.cancelled {
+    background: #ffe3e3;
+
+    color: #c62828;
+}
+
+
+/* ================= CANCEL BUTTON ================= */
+
+.cancel-booking-btn {
+    border: none;
+
+    background: #d9534f;
+
+    color: white;
+
+    padding: 10px 15px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    transition:
+        background 0.2s ease;
+}
+
+
+.cancel-booking-btn:hover {
+    background: #b52b27;
+}
+
+
+.cancelled-text {
+    color: #c62828;
+
+    font-weight: bold;
+
+    font-size: 14px;
+}
+
+
+/* ================= NO BOOKINGS ================= */
+
+.no-bookings {
+    text-align: center;
+
+    background: white;
+
+    padding: 60px 30px;
+
+    border-radius: 16px;
+
+    box-shadow: 0 5px 20px rgba(
+        0,
+        0,
+        0,
+        0.06
+    );
+}
+
+
+.no-bookings-icon {
+    font-size: 55px;
+
+    margin-bottom: 15px;
+}
+
+
+.no-bookings h2 {
+    color: #176b36;
+
+    margin-bottom: 10px;
+}
+
+
+.no-bookings p {
+    color: #666;
+
+    margin-bottom: 25px;
+}
+
+
+.browse-resources-btn {
+    display: inline-block;
+
+    background: #176b36;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 12px 22px;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
+
+
+.browse-resources-btn:hover {
+    background: #0f5429;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .my-bookings-page {
+        padding: 30px 15px;
+    }
+
+
+    .my-bookings-header h1 {
+        font-size: 28px;
+    }
+
+
+    .my-bookings-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .booking-detail-row {
+        flex-direction: column;
+
+        gap: 3px;
+    }
+
+
+    .booking-detail-row span {
+        text-align: left;
+    }
+
+
+    .booking-card-bottom {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .cancel-booking-btn {
+        width: 100%;
+    }
+
+}
+/* =====================================================
+   MY RESOURCE ACTION BUTTONS
+   ===================================================== */
+
+.resource-action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+
+/* EDIT BUTTON */
+
+.resource-action-buttons .edit-resource-btn {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* DELETE BUTTON */
+
+.delete-resource-btn {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* HOVER */
+
+.delete-resource-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .resource-action-buttons {
+        flex-direction: column;
+    }
+
+    .resource-action-buttons .edit-resource-btn,
+    .delete-resource-btn {
+        width: 100%;
+    }
+
+}
+/* =====================================================
+   EXCHANGE RESOURCE EDIT STYLING
+   ===================================================== */
+
+#editExchangeRequirementContainer {
+    margin-top: 18px;
+    padding: 16px;
+    border-radius: 12px;
+    background: #f0fdf4;
+    border: 1px solid #86efac;
+}
+
+#editExchangeRequirementContainer label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #166534;
+}
+
+#editExchangeRequirement {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #86efac;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background: white;
+}
+
+#editExchangeRequirement:focus {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+}
+
+.exchange-edit-help {
+    display: block;
+    margin-top: 7px;
+    color: #4b5563;
+    font-size: 12px;
+}
+
+
+/* Exchange edit modal */
+
+.exchange-edit-modal .modal-content {
+    border-top: 5px solid #22c55e;
+}
+
+
+/* Exchange edit button */
+
+.resource-type-exchange {
+    color: #166534;
+    background: #dcfce7;
+    border: 1px solid #86efac;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+
+/* Exchange resource card */
+
+.my-resource-card:has(.resource-type-exchange) {
+    border: 1px solid #86efac;
+}
+
+
+/* Exchange information */
+
+.my-resource-card:has(.resource-type-exchange)
+.my-resource-info {
+    background: #f0fdf4;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+/* Edit button for Exchange resources */
+
+.my-resource-card:has(.resource-type-exchange)
+.edit-resource-btn {
+    background: #166534;
+    color: white;
+    border: none;
+}
+
+.my-resource-card:has(.resource-type-exchange)
+.edit-resource-btn:hover {
+    background: #15803d;
+}
+#resourceMap {
+    width: 100%;
+    height: 500px;
+}

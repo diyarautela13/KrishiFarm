@@ -1,0 +1,2928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fair Price Calculator</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --bg:#f1f8f3;
+    --card:#ffffff;
+    --green:#28734d;
+    --dark-green:#1f5f40;
+    --light-green:#e5f1e9;
+    --border:#d7e7dd;
+    --text:#294637;
+    --muted:#71877b;
+    --shadow:rgba(38,115,77,0.14);
+}
+
+body{
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:50px 18px;
+}
+
+.card{
+    width:min(720px,100%);
+    background:white;
+    border-radius:28px;
+    padding:42px 48px;
+    box-shadow:0 20px 55px var(--shadow);
+}
+
+.hero{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+    margin-bottom:35px;
+}
+
+.hero h1{
+    color:var(--green);
+    font-size:clamp(30px,6vw,48px);
+}
+
+.hero p{
+    margin-top:8px;
+    color:var(--muted);
+    font-size:14px;
+}
+
+.sprout{
+    width:64px;
+    height:65px;
+    position:relative;
+    flex-shrink:0;
+}
+
+.stem{
+    position:absolute;
+    left:29px;
+    top:18px;
+    width:7px;
+    height:32px;
+    border-radius:10px;
+    background:#70bd38;
+}
+
+.leaf{
+    position:absolute;
+    top:7px;
+    width:34px;
+    height:17px;
+    background:#8cda3f;
+    border-radius:100% 0 100% 0;
+}
+
+.leaf-left{
+    left:0;
+    transform:rotate(22deg);
+}
+
+.leaf-right{
+    right:0;
+    transform:scaleX(-1) rotate(22deg);
+}
+
+.soil{
+    position:absolute;
+    left:16px;
+    bottom:0;
+    width:43px;
+    height:19px;
+    border-radius:55%;
+    background:#9b625d;
+}
+
+#calculatorForm{
+    display:grid;
+    gap:19px;
+}
+
+.field{
+    position:relative;
+}
+
+.field label{
+    display:block;
+    margin-bottom:8px;
+    font-size:15px;
+    font-weight:700;
+}
+
+input,
+select{
+    width:100%;
+    min-height:50px;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:#fbfdfb;
+    color:var(--text);
+    padding:0 14px;
+    font-size:16px;
+    outline:none;
+}
+
+input:focus,
+select:focus{
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(38,115,77,.10);
+}
+
+.custom-dropdown{
+    position:relative;
+    width:100%;
+}
+
+.dropdown-selected{
+    width:100%;
+    min-height:50px;
+    padding:0 14px;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:#fbfdfb;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    cursor:pointer;
+    user-select:none;
+}
+
+.dropdown-selected:hover{
+    border-color:var(--green);
+}
+
+.dropdown-arrow{
+    color:var(--green);
+    font-size:17px;
+}
+
+.dropdown-menu{
+    position:absolute;
+    z-index:100;
+    top:calc(100% + 5px);
+    left:0;
+    right:0;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    box-shadow:0 15px 35px rgba(38,115,77,.15);
+    display:none;
+    overflow:hidden;
+}
+
+.dropdown-menu.open{
+    display:block;
+}
+
+.dropdown-search{
+    padding:10px;
+    border-bottom:1px solid var(--border);
+    background:white;
+}
+
+.dropdown-search input{
+    min-height:43px;
+    padding-left:38px;
+}
+
+.search-icon{
+    position:absolute;
+    margin-left:13px;
+    margin-top:12px;
+    color:var(--green);
+    z-index:2;
+}
+
+.dropdown-options{
+    max-height:250px;
+    overflow-y:auto;
+}
+
+.dropdown-option{
+    padding:13px 15px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.dropdown-option:hover,
+.dropdown-option.highlighted{
+    background:var(--light-green);
+    color:var(--dark-green);
+}
+
+.no-option{
+    padding:15px;
+    color:var(--muted);
+    text-align:center;
+}
+
+.money-box,
+.percent-box{
+    display:flex;
+    align-items:center;
+    min-height:50px;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:#fbfdfb;
+    overflow:hidden;
+}
+
+.money-box:focus-within,
+.percent-box:focus-within{
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(38,115,77,.10);
+}
+
+.money-box b,
+.percent-box b{
+    min-height:50px;
+    display:grid;
+    place-items:center;
+    padding:0 15px;
+    color:var(--green);
+}
+
+.money-box b{
+    border-right:1px solid var(--border);
+}
+
+.percent-box b{
+    border-left:1px solid var(--border);
+}
+
+.money-box input,
+.percent-box input{
+    border:0;
+    box-shadow:none!important;
+    background:transparent;
+}
+
+.primary,
+.secondary{
+    width:100%;
+    min-height:54px;
+    border-radius:14px;
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.primary{
+    border:0;
+    color:white;
+    background:var(--green);
+}
+
+.primary:hover{
+    background:var(--dark-green);
+}
+
+.secondary{
+    border:1px solid var(--border);
+    color:var(--green);
+    background:var(--light-green);
+}
+
+.secondary:hover{
+    background:#d8eadf;
+}
+
+.rental-time-container{
+    display:flex;
+    gap:10px;
+}
+
+.rental-time-container input{
+    flex:1;
+}
+
+.rental-time-container select{
+    width:155px;
+}
+
+#resultPage{
+    display:none;
+}
+
+.summary{
+    padding:25px;
+    border-radius:20px;
+    background:var(--light-green);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:18px;
+}
+
+.summary-label{
+    display:block;
+    color:var(--muted);
+    font-size:14px;
+    font-weight:700;
+}
+
+#fairPrice{
+    display:block;
+    margin-top:5px;
+    color:var(--dark-green);
+    font-size:clamp(32px,7vw,48px);
+}
+
+.badge{
+    padding:9px 14px;
+    border-radius:999px;
+    color:white;
+    background:var(--green);
+    font-size:12px;
+    font-weight:800;
+}
+
+.details{
+    margin-top:20px;
+    border:1px solid var(--border);
+    border-radius:17px;
+    overflow:hidden;
+}
+
+.details div{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:13px 16px;
+    border-bottom:1px solid var(--border);
+    font-size:14px;
+}
+
+.details div:last-child{
+    border-bottom:0;
+}
+
+.details strong{
+    color:var(--dark-green);
+    text-align:right;
+}
+
+.formula{
+    margin-top:20px;
+    padding:17px;
+    border-radius:14px;
+    background:#f7fbf8;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.55;
+}
+
+.formula-title{
+    color:var(--dark-green);
+    font-weight:bold;
+}
+
+.formula-text{
+    margin-top:6px;
+}
+
+.result-buttons{
+    display:grid;
+    gap:10px;
+    margin-top:20px;
+}
+
+.note{
+    margin-top:24px;
+    color:var(--muted);
+    text-align:center;
+    font-size:12px;
+    line-height:1.5;
+}
+
+.hidden{
+    display:none!important;
+}
+
+@media(max-width:600px){
+
+    .page{
+        padding:18px 10px;
+    }
+
+    .card{
+        padding:28px 19px;
+        border-radius:22px;
+    }
+
+    .hero{
+        gap:7px;
+    }
+
+    .hero h1{
+        font-size:29px;
+    }
+
+    .sprout{
+        transform:scale(.72);
+        margin-right:-8px;
+    }
+
+    .summary{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .rental-time-container{
+        flex-direction:column;
+    }
+
+    .rental-time-container select{
+        width:100%;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<main class="page" id="calculatorPage">
+
+<section class="card">
+
+
+<header class="hero">
+
+<div class="sprout">
+
+<span class="leaf leaf-left"></span>
+<span class="leaf leaf-right"></span>
+<span class="stem"></span>
+<span class="soil"></span>
+
+</div>
+
+<div>
+
+<h1 data-i18n="title">
+Fair Price Calculator
+</h1>
+
+<p data-i18n="subtitle">
+Calculate a fair selling or rental price.
+</p>
+
+</div>
+
+</header>
+
+
+<form id="calculatorForm">
+
+
+<div class="field">
+
+<label data-i18n="language">
+Language
+</label>
+
+<select id="language">
+
+<option value="en">
+English
+</option>
+
+<option value="hi">
+हिन्दी
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label data-i18n="purpose">
+Purpose
+</label>
+
+<select id="purpose">
+
+<option value="sell" data-i18n="sell">
+Sell
+</option>
+
+<option value="rent" data-i18n="rent">
+Rent
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label data-i18n="productType">
+Product Type
+</label>
+
+<div
+class="custom-dropdown"
+id="categoryDropdown">
+
+<div
+class="dropdown-selected"
+id="categorySelected">
+
+<span id="categorySelectedText">
+Agricultural Machinery
+</span>
+
+<span class="dropdown-arrow">
+▼
+</span>
+
+</div>
+
+<div
+class="dropdown-menu"
+id="categoryMenu">
+
+<div class="dropdown-search">
+
+<span class="search-icon">
+⌕
+</span>
+
+<input
+type="text"
+id="categorySearch"
+autocomplete="off"
+placeholder="Search...">
+
+</div>
+
+<div
+class="dropdown-options"
+id="categoryOptions">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="field">
+
+<label data-i18n="product">
+Product
+</label>
+
+<div
+class="custom-dropdown"
+id="productDropdown">
+
+<div
+class="dropdown-selected"
+id="productSelected">
+
+<span id="productSelectedText">
+Select Product
+</span>
+
+<span class="dropdown-arrow">
+▼
+</span>
+
+</div>
+
+<div
+class="dropdown-menu"
+id="productMenu">
+
+<div class="dropdown-search">
+
+<span class="search-icon">
+⌕
+</span>
+
+<input
+type="text"
+id="productSearch"
+autocomplete="off"
+placeholder="Search product...">
+
+</div>
+
+<div
+class="dropdown-options"
+id="productOptions">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="field">
+
+<label data-i18n="quantity">
+Quantity
+</label>
+
+<input
+type="number"
+id="quantity"
+min="1"
+step="1"
+placeholder="Enter quantity">
+
+</div>
+
+
+<div class="field">
+
+<label id="baseCostLabel">
+Machinery / Equipment Rate
+</label>
+
+<div class="money-box">
+
+<b>₹</b>
+
+<input
+type="number"
+id="baseCost"
+min="0"
+step="0.01"
+placeholder="0.00">
+
+</div>
+
+</div>
+
+
+<div
+class="field hidden"
+id="rentalTimeField">
+
+<label data-i18n="rentalTime">
+Rental Time
+</label>
+
+<div class="rental-time-container">
+
+<input
+type="number"
+id="rentalTime"
+min="1"
+step="1"
+placeholder="Enter rental time">
+
+<select id="rentalUnit">
+
+<option
+value="hour"
+data-i18n="hour">
+Hour(s)
+</option>
+
+<option
+value="day"
+data-i18n="day">
+Day(s)
+</option>
+
+<option
+value="week"
+data-i18n="week">
+Week(s)
+</option>
+
+<option
+value="month"
+data-i18n="month">
+Month(s)
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div
+class="field"
+id="labourField">
+
+<label data-i18n="labourCost">
+Labour Cost
+</label>
+
+<div class="money-box">
+
+<b>₹</b>
+
+<input
+type="number"
+id="labourCost"
+min="0"
+step="0.01">
+
+</div>
+
+</div>
+
+
+<div
+class="field"
+id="transportField">
+
+<label data-i18n="transportCost">
+Transportation Cost
+</label>
+
+<div class="money-box">
+
+<b>₹</b>
+
+<input
+type="number"
+id="transportCost"
+min="0"
+step="0.01">
+
+</div>
+
+</div>
+
+
+<div
+class="field"
+id="otherField">
+
+<label data-i18n="otherCost">
+Other Cost
+</label>
+
+<div class="money-box">
+
+<b>₹</b>
+
+<input
+type="number"
+id="otherCost"
+min="0"
+step="0.01">
+
+</div>
+
+</div>
+
+
+<div class="field">
+
+<label data-i18n="profit">
+Profit (%)
+</label>
+
+<div class="percent-box">
+
+<input
+type="number"
+id="profit"
+min="0"
+step="0.1"
+placeholder="e.g. 10">
+
+<b>%</b>
+
+</div>
+
+</div>
+
+
+<button
+type="submit"
+class="primary"
+data-i18n="calculate">
+
+Calculate Fair Price
+
+</button>
+
+
+<button
+type="button"
+class="secondary"
+id="resetButton"
+data-i18n="reset">
+
+Reset
+
+</button>
+
+
+</form>
+
+
+<p
+class="note"
+data-i18n="note">
+
+In rental mode, only machinery rate,
+rental time, quantity and profit are used.
+
+</p>
+
+
+</section>
+
+</main>
+
+
+
+<main class="page" id="resultPage">
+
+<section class="card">
+
+
+<header class="hero">
+
+<div class="sprout">
+
+<span class="leaf leaf-left"></span>
+<span class="leaf leaf-right"></span>
+<span class="stem"></span>
+<span class="soil"></span>
+
+</div>
+
+<div>
+
+<h1 data-i18n="resultTitle">
+Fair Price Result
+</h1>
+
+<p data-i18n="resultSubtitle">
+Your estimated fair price is ready.
+</p>
+
+</div>
+
+</header>
+
+
+<div class="summary">
+
+<div>
+
+<span
+class="summary-label"
+data-i18n="estimatedPrice">
+
+Estimated Fair Price
+
+</span>
+
+<strong id="fairPrice">
+₹0.00
+</strong>
+
+</div>
+
+<span
+class="badge"
+id="purposeBadge">
+</span>
+
+</div>
+
+
+<div class="details">
+
+
+<div>
+
+<span data-i18n="productType">
+Product Type
+</span>
+
+<strong id="resultCategory"></strong>
+
+</div>
+
+
+<div>
+
+<span data-i18n="product">
+Product
+</span>
+
+<strong id="resultProduct"></strong>
+
+</div>
+
+
+<div>
+
+<span data-i18n="quantity">
+Quantity
+</span>
+
+<strong id="resultQuantity"></strong>
+
+</div>
+
+
+<div>
+
+<span id="resultBaseLabel">
+Machinery Cost
+</span>
+
+<strong id="resultBase"></strong>
+
+</div>
+
+
+<div id="rentalResultRow">
+
+<span data-i18n="rentalTime">
+Rental Time
+</span>
+
+<strong id="resultRentalTime"></strong>
+
+</div>
+
+
+<div id="labourResultRow">
+
+<span data-i18n="labourCost">
+Labour Cost
+</span>
+
+<strong id="resultLabour"></strong>
+
+</div>
+
+
+<div id="transportResultRow">
+
+<span data-i18n="transportCost">
+Transportation Cost
+</span>
+
+<strong id="resultTransport"></strong>
+
+</div>
+
+
+<div id="otherResultRow">
+
+<span data-i18n="otherCost">
+Other Cost
+</span>
+
+<strong id="resultOther"></strong>
+
+</div>
+
+
+<div>
+
+<span data-i18n="profitAmount">
+Profit Amount
+</span>
+
+<strong id="resultProfit"></strong>
+
+</div>
+
+
+</div>
+
+
+<div class="formula">
+
+<div
+class="formula-title"
+data-i18n="calculation">
+
+Calculation
+
+</div>
+
+<p
+class="formula-text"
+id="formulaText">
+</p>
+
+</div>
+
+
+<div class="result-buttons">
+
+<button
+class="primary"
+id="backButton"
+data-i18n="back">
+
+Back to Calculator
+
+</button>
+
+<button
+class="secondary"
+id="newButton"
+data-i18n="newCalculation">
+
+New Calculation
+
+</button>
+
+</div>
+
+
+<p
+class="note"
+data-i18n="resultNote">
+
+This is an estimate. Actual market prices may vary.
+
+</p>
+
+
+</section>
+
+</main>
+
+
+
+<script>
+
+
+const translations = {
+
+en:{
+
+title:"Fair Price Calculator",
+
+subtitle:"Calculate a fair selling or rental price.",
+
+language:"Language",
+
+purpose:"Purpose",
+
+sell:"Sell",
+
+rent:"Rent",
+
+productType:"Product Type",
+
+product:"Product",
+
+quantity:"Quantity",
+
+productionCost:"Production Cost",
+
+machineryCost:"Machinery / Equipment Rate",
+
+rentalRate:"Machinery / Equipment Rate",
+
+rentalTime:"Rental Time",
+
+hour:"Hour(s)",
+
+day:"Day(s)",
+
+week:"Week(s)",
+
+month:"Month(s)",
+
+labourCost:"Labour Cost",
+
+transportCost:"Transportation Cost",
+
+otherCost:"Other Cost",
+
+profit:"Profit (%)",
+
+calculate:"Calculate Fair Price",
+
+reset:"Reset",
+
+note:"In rental mode, only machinery rate, rental time, quantity and profit are used.",
+
+search:"Search...",
+
+searchProduct:"Search product...",
+
+selectProduct:"Select Product",
+
+required:"Please fill all required fields.",
+
+invalidQuantity:"Quantity must be a whole number.",
+
+invalidRentalTime:"Rental time must be a whole number greater than zero.",
+
+resultTitle:"Fair Price Result",
+
+resultSubtitle:"Your estimated fair price is ready.",
+
+estimatedPrice:"Estimated Fair Price",
+
+profitAmount:"Profit Amount",
+
+calculation:"Calculation",
+
+back:"Back to Calculator",
+
+newCalculation:"New Calculation",
+
+sellBadge:"SELL",
+
+rentBadge:"RENT",
+
+resultNote:"This is an estimate. Actual market prices may vary.",
+
+sellFormula:"Fair Selling Price = (Base Cost × Quantity + Labour Cost + Transportation Cost + Other Cost) + Profit",
+
+rentFormula:"Fair Rental Price = Rental Rate × Rental Time × Quantity + Profit"
+
+},
+
+hi:{
+
+title:"उचित मूल्य कैलकुलेटर",
+
+subtitle:"बेचने या किराये का उचित मूल्य निकालें।",
+
+language:"भाषा",
+
+purpose:"उद्देश्य",
+
+sell:"बेचना",
+
+rent:"किराये पर देना",
+
+productType:"उत्पाद का प्रकार",
+
+product:"उत्पाद",
+
+quantity:"मात्रा",
+
+productionCost:"उत्पादन लागत",
+
+machineryCost:"मशीनरी / उपकरण दर",
+
+rentalRate:"मशीनरी / उपकरण दर",
+
+rentalTime:"किराये की अवधि",
+
+hour:"घंटा",
+
+day:"दिन",
+
+week:"सप्ताह",
+
+month:"महीना",
+
+labourCost:"श्रम लागत",
+
+transportCost:"परिवहन लागत",
+
+otherCost:"अन्य लागत",
+
+profit:"लाभ (%)",
+
+calculate:"उचित मूल्य निकालें",
+
+reset:"रीसेट",
+
+note:"किराये के मामले में केवल मशीनरी दर, किराये की अवधि, मात्रा और लाभ का उपयोग किया जाता है।",
+
+search:"खोजें...",
+
+searchProduct:"उत्पाद खोजें...",
+
+selectProduct:"उत्पाद चुनें",
+
+required:"कृपया सभी आवश्यक जानकारी भरें।",
+
+invalidQuantity:"मात्रा पूर्ण संख्या होनी चाहिए।",
+
+invalidRentalTime:"किराये की अवधि शून्य से अधिक पूर्ण संख्या होनी चाहिए।",
+
+resultTitle:"उचित मूल्य परिणाम",
+
+resultSubtitle:"आपका अनुमानित उचित मूल्य तैयार है।",
+
+estimatedPrice:"अनुमानित उचित मूल्य",
+
+profitAmount:"लाभ राशि",
+
+calculation:"गणना",
+
+back:"कैलकुलेटर पर वापस जाएं",
+
+newCalculation:"नई गणना",
+
+sellBadge:"बिक्री",
+
+rentBadge:"किराया",
+
+resultNote:"यह एक अनुमान है। वास्तविक बाजार मूल्य अलग हो सकता है।",
+
+sellFormula:"उचित बिक्री मूल्य = (मूल लागत × मात्रा + श्रम लागत + परिवहन लागत + अन्य लागत) + लाभ",
+
+rentFormula:"उचित किराया मूल्य = किराया दर × किराये की अवधि × मात्रा + लाभ"
+
+}
+
+};
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+let language =
+    localStorage.getItem("krishiLanguage") || "en";
+
+
+/* =====================================================
+   CATEGORY DATA
+===================================================== */
+
+const categories=[
+
+{
+id:"machinery",
+type:"equipment",
+en:"Agricultural Machinery",
+hi:"कृषि मशीनरी",
+products:[
+
+["tractor","Tractor","ट्रैक्टर"],
+["combine","Combine Harvester","कंबाइन हार्वेस्टर"],
+["power-tiller","Power Tiller","पावर टिलर"],
+["seed-drill","Seed Drill","सीड ड्रिल"],
+["rotavator","Rotavator","रोटावेटर"],
+["cultivator","Cultivator","कल्टीवेटर"],
+["thresher","Thresher","थ्रेशर"],
+["reaper","Reaper","रीपर"],
+["baler","Baler","बेलर"],
+["harvester","Harvester","हार्वेस्टर"]
+
+]
+},
+
+{
+id:"farm-equipment",
+type:"equipment",
+en:"Farm Equipments",
+hi:"कृषि उपकरण",
+products:[
+
+["disc-harrow","Disc Harrow","डिस्क हैरो"],
+["land-leveler","Land Leveler","लैंड लेवलर"],
+["ridger","Ridger","रिजर"],
+["fertilizer-spreader","Fertilizer Spreader","उर्वरक स्प्रेडर"],
+["farm-trailer","Farm Trailer","कृषि ट्रेलर"],
+["grain-cleaner","Grain Cleaner","अनाज क्लीनर"],
+["fodder-cutter","Fodder Cutter","चारा कटर"],
+["milking-machine","Milking Machine","दूध निकालने की मशीन"]
+
+]
+},
+
+{
+id:"irrigation",
+type:"equipment",
+en:"Irrigation Equipments",
+hi:"सिंचाई उपकरण",
+products:[
+
+["drip","Drip Irrigation System","ड्रिप सिंचाई प्रणाली"],
+["sprinkler","Sprinkler System","स्प्रिंकलर प्रणाली"],
+["water-pump","Water Pump","पानी का पंप"],
+["submersible","Submersible Pump","सबमर्सिबल पंप"],
+["centrifugal","Centrifugal Pump","सेंट्रीफ्यूगल पंप"],
+["irrigation-pipe","Irrigation Pipe","सिंचाई पाइप"]
+
+]
+},
+
+{
+id:"tools",
+type:"equipment",
+en:"Farm Tools",
+hi:"कृषि औजार",
+products:[
+
+["spade","Spade","फावड़ा"],
+["hoe","Hoe","कुदाल"],
+["sickle","Sickle","दरांती"],
+["pruning-shear","Pruning Shear","प्रूनिंग कैंची"],
+["shovel","Shovel","बेलचा"],
+["rake","Rake","रेक"],
+["axe","Axe","कुल्हाड़ी"],
+["wheelbarrow","Wheelbarrow","ठेला"]
+
+]
+},
+
+{
+id:"livestock",
+type:"production",
+en:"Livestock & Dairy Supplies",
+hi:"पशुधन और डेयरी सामग्री",
+products:[
+
+["cattle-feed","Cattle Feed","पशु आहार"],
+["poultry-feed","Poultry Feed","पोल्ट्री आहार"],
+["fodder","Green Fodder","हरा चारा"],
+["hay","Hay","सूखी घास"],
+["silage","Silage","साइलेज"],
+["milk-can","Milk Can","दूध का कैन"]
+
+]
+},
+
+{
+id:"safety",
+type:"equipment",
+en:"Safety Equipments",
+hi:"सुरक्षा उपकरण",
+products:[
+
+["gloves","Safety Gloves","सुरक्षा दस्ताने"],
+["boots","Safety Boots","सुरक्षा जूते"],
+["mask","Protective Mask","सुरक्षात्मक मास्क"],
+["goggles","Safety Goggles","सुरक्षा चश्मा"],
+["suit","Protective Suit","सुरक्षा सूट"]
+
+]
+},
+
+{
+id:"waste",
+type:"production",
+en:"Agricultural Waste & By-products",
+hi:"कृषि अपशिष्ट और उप-उत्पाद",
+products:[
+
+["rice-husk","Rice Husk","धान की भूसी"],
+["wheat-straw","Wheat Straw","गेहूं का भूसा"],
+["bagasse","Sugarcane Bagasse","गन्ने की खोई"],
+["corn-cob","Corn Cobs","मक्का के भुट्टे"],
+["compost","Farm Compost","कृषि कम्पोस्ट"],
+["vermicompost","Vermicompost","वर्मी कम्पोस्ट"]
+
+]
+},
+
+{
+id:"misc",
+type:"production",
+en:"Miscellaneous Farm Supplies",
+hi:"विविध कृषि सामग्री",
+products:[
+
+["seeds","Seeds","बीज"],
+["nursery","Nursery Plants","नर्सरी पौधे"],
+["seedling-tray","Seedling Trays","पौध ट्रे"],
+["mulching-film","Mulching Film","मल्चिंग फिल्म"],
+["jute-bag","Jute Bags","जूट की बोरियां"],
+["grain-bag","Grain Storage Bags","अनाज भंडारण बैग"],
+["shade-net","Shade Net","शेड नेट"]
+
+]
+}
+
+];
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function $(id){
+    return document.getElementById(id);
+}
+
+function t(key){
+    return translations[language][key];
+}
+
+function currentCategory(){
+
+    return categories.find(
+        c=>c.id===selectedCategory
+    );
+
+}
+
+function productDisplay(product){
+
+    return language==="en"
+        ? product[1]
+        : product[2];
+
+}
+
+function money(value){
+
+    return new Intl.NumberFormat(
+        language==="hi" ? "hi-IN" : "en-IN",
+        {
+            style:"currency",
+            currency:"INR",
+            maximumFractionDigits:2
+        }
+    ).format(value);
+
+}
+
+
+/* =====================================================
+   SELECTED VALUES
+===================================================== */
+
+let selectedCategory="machinery";
+
+let selectedProduct="tractor";
+
+
+/* =====================================================
+   SEARCH MATCHING
+===================================================== */
+
+function matchScore(text,query){
+
+    text=text.toLowerCase();
+    query=query.toLowerCase().replace(/\s/g,"");
+
+    if(!query)
+        return 0;
+
+    if(text.startsWith(query))
+        return 1000;
+
+    let position=0;
+    let matched=0;
+
+    for(let char of query){
+
+        const found=text.indexOf(
+            char,
+            position
+        );
+
+        if(found!==-1){
+
+            matched++;
+
+            position=found+1;
+
+        }
+
+    }
+
+    if(matched===query.length)
+        return 800;
+
+    let common=0;
+
+    for(let char of query){
+
+        if(text.includes(char))
+            common++;
+
+    }
+
+    if(common===query.length)
+        return 600;
+
+    return matched*50;
+
+}
+
+
+/* =====================================================
+   TRANSLATE PAGE
+===================================================== */
+
+function applyLanguage(){
+
+    document
+    .querySelectorAll("[data-i18n]")
+    .forEach(element=>{
+
+        const key=
+            element.getAttribute("data-i18n");
+
+        element.textContent=t(key);
+
+    });
+
+
+    $("categorySearch").placeholder=
+        t("search");
+
+    $("productSearch").placeholder=
+        t("searchProduct");
+
+
+    $("language").value=language;
+
+
+    renderCategories(
+        $("categorySearch").value
+    );
+
+    renderProducts(
+        $("productSearch").value
+    );
+
+
+    updateCostLabel();
+
+    updateRentalVisibility();
+
+}
+
+
+/* =====================================================
+   CATEGORY FILTERING
+===================================================== */
+
+function availableCategories(){
+
+    const purpose=$("purpose").value;
+
+    if(purpose==="rent"){
+
+        return categories.filter(
+            c=>c.type==="equipment"
+        );
+
+    }
+
+    return categories;
+
+}
+
+
+/* =====================================================
+   CATEGORY DROPDOWN
+===================================================== */
+
+function renderCategories(query=""){
+
+    const box=$("categoryOptions");
+
+    box.innerHTML="";
+
+
+    let list=
+        availableCategories().map(
+            category=>{
+
+                const text=
+                    language==="en"
+                    ?category.en
+                    :category.hi;
+
+                return{
+
+                    category:category,
+
+                    text:text,
+
+                    score:matchScore(
+                        text,
+                        query
+                    )
+
+                };
+
+            }
+        );
+
+
+    if(query.trim()){
+
+        list.sort(
+            (a,b)=>
+                b.score-a.score
+        );
+
+    }
+
+
+    if(list.length===0){
+
+        box.innerHTML=
+            `<div class="no-option">
+                No matching option
+            </div>`;
+
+        return;
+
+    }
+
+
+    list.forEach(item=>{
+
+        const div=
+            document.createElement("div");
+
+        div.className=
+            "dropdown-option";
+
+        div.textContent=
+            item.text;
+
+
+        if(item.category.id===
+           selectedCategory){
+
+            div.classList.add(
+                "highlighted"
+            );
+
+        }
+
+
+        div.onclick=function(){
+
+            selectCategory(
+                item.category.id
+            );
+
+            closeDropdown(
+                "categoryMenu"
+            );
+
+        };
+
+
+        box.appendChild(div);
+
+    });
+
+
+    if(query.trim() && list[0].score>0){
+
+        selectCategory(
+            list[0].category.id,
+            false
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   SELECT CATEGORY
+===================================================== */
+
+function selectCategory(
+    id,
+    rerender=true
+){
+
+    selectedCategory=id;
+
+
+    const category=
+        currentCategory();
+
+
+    $("categorySelectedText")
+        .textContent=
+        language==="en"
+        ?category.en
+        :category.hi;
+
+
+    selectedProduct=
+        category.products[0][0];
+
+
+    if(rerender){
+
+        $("productSearch").value="";
+
+        renderProducts("");
+
+    }
+
+    else{
+
+        renderProducts(
+            $("productSearch").value
+        );
+
+    }
+
+
+    updateCostLabel();
+
+}
+
+
+/* =====================================================
+   PRODUCT DROPDOWN
+===================================================== */
+
+function renderProducts(query=""){
+
+    const box=$("productOptions");
+
+    box.innerHTML="";
+
+
+    const category=
+        currentCategory();
+
+
+    if(!category)
+        return;
+
+
+    let list=
+        category.products.map(
+            product=>{
+
+                const text=
+                    productDisplay(
+                        product
+                    );
+
+                return{
+
+                    product:product,
+
+                    text:text,
+
+                    score:matchScore(
+                        text,
+                        query
+                    )
+
+                };
+
+            }
+        );
+
+
+    if(query.trim()){
+
+        list.sort(
+            (a,b)=>
+                b.score-a.score
+        );
+
+    }
+
+
+    if(list.length===0){
+
+        box.innerHTML=
+            `<div class="no-option">
+                No matching product
+            </div>`;
+
+        return;
+
+    }
+
+
+    list.forEach(item=>{
+
+        const div=
+            document.createElement("div");
+
+        div.className=
+            "dropdown-option";
+
+        div.textContent=
+            item.text;
+
+
+        if(item.product[0]===
+           selectedProduct){
+
+            div.classList.add(
+                "highlighted"
+            );
+
+        }
+
+
+        div.onclick=function(){
+
+            selectProduct(
+                item.product[0]
+            );
+
+            closeDropdown(
+                "productMenu"
+            );
+
+        };
+
+
+        box.appendChild(div);
+
+    });
+
+
+    if(
+        query.trim() &&
+        list[0].score>0
+    ){
+
+        selectProduct(
+            list[0].product[0],
+            false
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   SELECT PRODUCT
+===================================================== */
+
+function selectProduct(
+    id,
+    updateText=true
+){
+
+    selectedProduct=id;
+
+
+    const category=
+        currentCategory();
+
+
+    const product=
+        category.products.find(
+            p=>p[0]===id
+        );
+
+
+    if(product && updateText){
+
+        $("productSelectedText")
+            .textContent=
+            productDisplay(product);
+
+    }
+
+    else if(product){
+
+        $("productSelectedText")
+            .textContent=
+            productDisplay(product);
+
+    }
+
+}
+
+
+/* =====================================================
+   DROPDOWN OPEN/CLOSE
+===================================================== */
+
+function openDropdown(menuId){
+
+    closeAllDropdowns();
+
+    $(menuId)
+        .classList.add("open");
+
+
+    if(menuId==="categoryMenu"){
+
+        $("categorySearch").focus();
+
+    }
+
+    else{
+
+        $("productSearch").focus();
+
+    }
+
+}
+
+
+function closeDropdown(menuId){
+
+    $(menuId)
+        .classList.remove("open");
+
+}
+
+
+function closeAllDropdowns(){
+
+    document
+    .querySelectorAll(".dropdown-menu")
+    .forEach(menu=>{
+
+        menu.classList.remove(
+            "open"
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   CATEGORY CLICK
+===================================================== */
+
+$("categorySelected")
+.addEventListener(
+    "click",
+    function(){
+
+        const menu=
+            $("categoryMenu");
+
+        if(menu.classList.contains("open")){
+
+            closeDropdown(
+                "categoryMenu"
+            );
+
+        }
+
+        else{
+
+            openDropdown(
+                "categoryMenu"
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   PRODUCT CLICK
+===================================================== */
+
+$("productSelected")
+.addEventListener(
+    "click",
+    function(){
+
+        const menu=
+            $("productMenu");
+
+        if(menu.classList.contains("open")){
+
+            closeDropdown(
+                "productMenu"
+            );
+
+        }
+
+        else{
+
+            openDropdown(
+                "productMenu"
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   CATEGORY SEARCH
+===================================================== */
+
+$("categorySearch")
+.addEventListener(
+    "input",
+    function(){
+
+        renderCategories(
+            this.value
+        );
+
+    }
+);
+
+
+/* =====================================================
+   PRODUCT SEARCH
+===================================================== */
+
+$("productSearch")
+.addEventListener(
+    "input",
+    function(){
+
+        renderProducts(
+            this.value
+        );
+
+    }
+);
+
+
+/* =====================================================
+   CLOSE DROPDOWNS WHEN CLICKING OUTSIDE
+===================================================== */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            !event.target.closest(
+                ".custom-dropdown"
+            )
+        ){
+
+            closeAllDropdowns();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   PURPOSE CHANGE
+===================================================== */
+
+$("purpose").addEventListener(
+    "change",
+    function(){
+
+        const available=
+            availableCategories();
+
+
+        if(
+            !available.some(
+                c=>c.id===selectedCategory
+            )
+        ){
+
+            selectedCategory=
+                available[0].id;
+
+        }
+
+
+        $("categorySearch").value="";
+
+        $("productSearch").value="";
+
+
+        renderCategories("");
+
+        selectCategory(
+            selectedCategory
+        );
+
+
+        updateRentalVisibility();
+
+        updateCostLabel();
+
+    }
+);
+
+
+/* =====================================================
+   COST LABEL
+===================================================== */
+
+function updateCostLabel(){
+
+    const category=
+        currentCategory();
+
+
+    if(!category)
+        return;
+
+
+    if(
+        $("purpose").value==="rent"
+    ){
+
+        $("baseCostLabel")
+            .textContent=
+            t("rentalRate");
+
+    }
+
+    else if(
+        category.type==="production"
+    ){
+
+        $("baseCostLabel")
+            .textContent=
+            t("productionCost");
+
+    }
+
+    else{
+
+        $("baseCostLabel")
+            .textContent=
+            t("machineryCost");
+
+    }
+
+}
+
+
+/* =====================================================
+   RENTAL VISIBILITY
+===================================================== */
+
+function updateRentalVisibility(){
+
+    const renting=
+        $("purpose").value==="rent";
+
+
+    $("rentalTimeField")
+        .classList.toggle(
+            "hidden",
+            !renting
+        );
+
+
+    $("labourField")
+        .classList.toggle(
+            "hidden",
+            renting
+        );
+
+
+    $("transportField")
+        .classList.toggle(
+            "hidden",
+            renting
+        );
+
+
+    $("otherField")
+        .classList.toggle(
+            "hidden",
+            renting
+        );
+
+
+    if(!renting){
+
+        $("rentalTime").value="";
+
+    }
+
+}
+
+
+/* =====================================================
+   LANGUAGE CHANGE
+===================================================== */
+
+$("language")
+.addEventListener(
+    "change",
+    function(){
+
+        language=this.value;
+
+
+        localStorage.setItem(
+            "krishiLanguage",
+            language
+        );
+
+
+        applyLanguage();
+
+    }
+);
+
+
+/* =====================================================
+   CALCULATE
+===================================================== */
+
+$("calculatorForm")
+.addEventListener(
+    "submit",
+    function(event){
+
+        event.preventDefault();
+
+
+        const purpose=
+            $("purpose").value;
+
+
+        const category=
+            currentCategory();
+
+
+        const quantity=
+            parseFloat(
+                $("quantity").value
+            );
+
+
+        const baseCost=
+            parseFloat(
+                $("baseCost").value
+            );
+
+
+        const profitPercent=
+            parseFloat(
+                $("profit").value
+            ) || 0;
+
+
+        if(
+            !Number.isInteger(quantity) ||
+            quantity<1
+        ){
+
+            alert(
+                t("invalidQuantity")
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !baseCost ||
+            baseCost<=0
+        ){
+
+            alert(
+                t("required")
+            );
+
+            return;
+
+        }
+
+
+        /* =========================
+           RENT
+        ========================= */
+
+        if(purpose==="rent"){
+
+            const rentalTime=
+                parseFloat(
+                    $("rentalTime").value
+                );
+
+
+            if(
+                !Number.isInteger(
+                    rentalTime
+                ) ||
+                rentalTime<1
+            ){
+
+                alert(
+                    t("invalidRentalTime")
+                );
+
+                return;
+
+            }
+
+
+            /* =========================
+               RENTAL UNIT
+            ========================= */
+
+            let totalHours=1;
+
+
+            if(
+                $("rentalUnit").value===
+                "hour"
+            ){
+
+                totalHours=
+                    rentalTime;
+
+            }
+
+            else if(
+                $("rentalUnit").value===
+                "day"
+            ){
+
+                totalHours=
+                    rentalTime*24;
+
+            }
+
+            else if(
+                $("rentalUnit").value===
+                "week"
+            ){
+
+                totalHours=
+                    rentalTime*7*24;
+
+            }
+
+            else if(
+                $("rentalUnit").value===
+                "month"
+            ){
+
+                totalHours=
+                    rentalTime*30*24;
+
+            }
+
+
+            const rentalAmount=
+                baseCost*
+                totalHours*
+                quantity;
+
+
+            const profitAmount=
+                rentalAmount*
+                (profitPercent/100);
+
+
+            const fairPrice=
+                rentalAmount+
+                profitAmount;
+
+
+            const result={
+
+                mode:"rent",
+
+                category:
+                    language==="en"
+                    ?category.en
+                    :category.hi,
+
+                product:
+                    $("productSelectedText")
+                    .textContent,
+
+                quantity:quantity,
+
+                rentalRate:baseCost,
+
+                rentalTime:rentalTime,
+
+                rentalUnit:
+                    $("rentalUnit").value,
+
+                rentalHours:
+                    totalHours,
+
+                rentalAmount:
+                    rentalAmount,
+
+                profit:
+                    profitAmount,
+
+                fairPrice:
+                    fairPrice
+
+            };
+
+
+            sessionStorage.setItem(
+                "fairPriceResult",
+                JSON.stringify(result)
+            );
+
+
+            showResult();
+
+            return;
+
+        }
+
+
+        /* =========================
+           SELL
+        ========================= */
+
+        const labour=
+            parseFloat(
+                $("labourCost").value
+            ) || 0;
+
+
+        const transport=
+            parseFloat(
+                $("transportCost").value
+            ) || 0;
+
+
+        const other=
+            parseFloat(
+                $("otherCost").value
+            ) || 0;
+
+
+        const baseAmount=
+            baseCost*
+            quantity;
+
+
+        const subtotal=
+            baseAmount+
+            labour+
+            transport+
+            other;
+
+
+        const profitAmount=
+            subtotal*
+            (profitPercent/100);
+
+
+        const fairPrice=
+            subtotal+
+            profitAmount;
+
+
+        const result={
+
+            mode:"sell",
+
+            category:
+                language==="en"
+                ?category.en
+                :category.hi,
+
+            product:
+                $("productSelectedText")
+                .textContent,
+
+            quantity:quantity,
+
+            baseCost:baseCost,
+
+            baseAmount:baseAmount,
+
+            labour:labour,
+
+            transport:transport,
+
+            other:other,
+
+            profit:profitAmount,
+
+            fairPrice:fairPrice
+
+        };
+
+
+        sessionStorage.setItem(
+            "fairPriceResult",
+            JSON.stringify(result)
+        );
+
+
+        showResult();
+
+    }
+);
+
+
+/* =====================================================
+   SHOW RESULT
+===================================================== */
+
+function showResult(){
+
+    $("calculatorPage")
+        .style.display="none";
+
+    $("resultPage")
+        .style.display="flex";
+
+
+    displayResult();
+
+}
+
+
+/* =====================================================
+   DISPLAY RESULT
+===================================================== */
+
+function displayResult(){
+
+    const stored=
+        sessionStorage.getItem(
+            "fairPriceResult"
+        );
+
+
+    if(!stored)
+        return;
+
+
+    const result=
+        JSON.parse(stored);
+
+
+    $("fairPrice")
+        .textContent=
+        money(
+            result.fairPrice
+        );
+
+
+    $("purposeBadge")
+        .textContent=
+        result.mode==="rent"
+        ?t("rentBadge")
+        :t("sellBadge");
+
+
+    $("resultCategory")
+        .textContent=
+        result.category;
+
+
+    $("resultProduct")
+        .textContent=
+        result.product;
+
+
+    $("resultQuantity")
+        .textContent=
+        result.quantity;
+
+
+    /* =========================
+       RENT RESULT
+    ========================= */
+
+    if(result.mode==="rent"){
+
+        $("resultBaseLabel")
+            .textContent=
+            t("rentalRate");
+
+
+        $("resultBase")
+            .textContent=
+            money(
+                result.rentalRate
+            );
+
+
+        $("rentalResultRow")
+            .style.display="flex";
+
+
+        let unitText;
+
+        if(
+            result.rentalUnit==="hour"
+        ){
+
+            unitText=t("hour");
+
+        }
+
+        else if(
+            result.rentalUnit==="day"
+        ){
+
+            unitText=t("day");
+
+        }
+
+        else if(
+            result.rentalUnit==="week"
+        ){
+
+            unitText=t("week");
+
+        }
+
+        else{
+
+            unitText=t("month");
+
+        }
+
+
+        $("resultRentalTime")
+            .textContent=
+            result.rentalTime+
+            " "+
+            unitText;
+
+
+        $("labourResultRow")
+            .style.display="none";
+
+        $("transportResultRow")
+            .style.display="none";
+
+        $("otherResultRow")
+            .style.display="none";
+
+
+        $("resultProfit")
+            .textContent=
+            money(
+                result.profit
+            );
+
+
+        $("formulaText")
+            .textContent=
+            t("rentFormula")+
+            " = "+
+            money(
+                result.rentalAmount
+            )+
+            " + "+
+            money(
+                result.profit
+            );
+
+    }
+
+
+    /* =========================
+       SELL RESULT
+    ========================= */
+
+    else{
+
+        $("resultBaseLabel")
+            .textContent=
+            t("machineryCost");
+
+
+        $("resultBase")
+            .textContent=
+            money(
+                result.baseCost
+            );
+
+
+        $("rentalResultRow")
+            .style.display="none";
+
+
+        $("labourResultRow")
+            .style.display="flex";
+
+        $("transportResultRow")
+            .style.display="flex";
+
+        $("otherResultRow")
+            .style.display="flex";
+
+
+        $("resultLabour")
+            .textContent=
+            money(
+                result.labour
+            );
+
+
+        $("resultTransport")
+            .textContent=
+            money(
+                result.transport
+            );
+
+
+        $("resultOther")
+            .textContent=
+            money(
+                result.other
+            );
+
+
+        $("resultProfit")
+            .textContent=
+            money(
+                result.profit
+            );
+
+
+        $("formulaText")
+            .textContent=
+            t("sellFormula");
+
+    }
+
+}
+
+
+/* =====================================================
+   BACK
+===================================================== */
+
+$("backButton")
+.addEventListener(
+    "click",
+    function(){
+
+        $("resultPage")
+            .style.display="none";
+
+        $("calculatorPage")
+            .style.display="flex";
+
+    }
+);
+
+
+/* =====================================================
+   NEW CALCULATION
+===================================================== */
+
+$("newButton")
+.addEventListener(
+    "click",
+    function(){
+
+        sessionStorage.removeItem(
+            "fairPriceResult"
+        );
+
+
+        $("calculatorForm").reset();
+
+
+        $("purpose").value="sell";
+
+
+        selectedCategory=
+            "machinery";
+
+
+        selectedProduct=
+            "tractor";
+
+
+        $("categorySearch").value="";
+
+        $("productSearch").value="";
+
+
+        selectCategory(
+            "machinery"
+        );
+
+
+        $("resultPage")
+            .style.display="none";
+
+        $("calculatorPage")
+            .style.display="flex";
+
+
+        $("language").value=language;
+
+
+        updateRentalVisibility();
+
+        updateCostLabel();
+
+    }
+);
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+$("resetButton")
+.addEventListener(
+    "click",
+    function(){
+
+        $("calculatorForm").reset();
+
+
+        $("purpose").value="sell";
+
+
+        selectedCategory=
+            "machinery";
+
+        selectedProduct=
+            "tractor";
+
+
+        $("categorySearch").value="";
+
+        $("productSearch").value="";
+
+
+        selectCategory(
+            "machinery"
+        );
+
+
+        $("language").value=language;
+
+
+        updateRentalVisibility();
+
+        updateCostLabel();
+
+    }
+);
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+language =
+    localStorage.getItem("krishiLanguage") || "en";
+
+
+selectCategory(
+    "machinery"
+);
+
+
+$("language").value=language;
+
+
+applyLanguage();
+
+updateRentalVisibility();
+
+updateCostLabel();
+
+</script>
+
+</body>
+</html>

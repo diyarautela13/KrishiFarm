@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KrishiFarm - Rural Resource Exchange</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ================= LEAFLET MAP CSS ================= -->
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= LOGIN POPUP ================= -->
+
+    <div class="login-overlay" id="loginOverlay">
+
+        <div class="login-box">
+
+            <!-- Close Button -->
+
+            <button
+                class="close-btn"
+                id="closeLogin"
+            >
+                &times;
+            </button>
+
+
+            <div class="login-icon">
+                🌾
+            </div>
+
+
+            <h2 id="loginTitle">
+                Welcome to KrishiFarm
+            </h2>
+
+
+            <p id="loginSubtitle">
+
+                Share, Rent and Exchange Resources Easily
+
+            </p>
+
+
+            <!-- Login Choice -->
+
+            <div id="loginChoice">
+
+                <button
+                    class="phone-login-btn"
+                    id="phoneLoginBtn"
+                >
+                    📱 Login with Phone Number
+                </button>
+
+            </div>
+
+
+            <!-- Farmer Details Form -->
+
+            <form
+                id="farmerForm"
+                class="farmer-form"
+            >
+
+                <h3 id="detailsTitle">
+                    Enter Your Details
+                </h3>
+
+
+                <label
+                    for="farmerName"
+                    id="nameLabel"
+                >
+                    Name
+                </label>
+
+
+                <input
+                    type="text"
+                    id="farmerName"
+                    placeholder="Enter your name"
+                    required
+                >
+
+
+                <label
+                    for="farmerLocation"
+                    id="locationLabel"
+                >
+                    Location
+                </label>
+
+
+                <input
+                    type="text"
+                    id="farmerLocation"
+                    placeholder="Enter your location"
+                    required
+                >
+
+
+                <label
+                    for="farmerPhone"
+                    id="phoneLabel"
+                >
+                    Phone Number
+                </label>
+
+
+                <input
+                    type="tel"
+                    id="farmerPhone"
+                    placeholder="Enter phone number"
+                    maxlength="10"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="continue-btn"
+                >
+                    Continue
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="nav-left">
+
+                <a
+                    href="dashboard.html"
+                    id="dashboardLink"
+                >
+                    👨‍🌾 Farmer Dashboard
+                </a>
+
+
+                <a
+                    href="index.html"
+                    id="homeLink"
+                >
+                    Home
+                </a>
+
+
+                <a
+                    href="resources.html"
+                    id="resourcesLink"
+                >
+                    Resources
+                </a>
+
+
+                <a
+                    href="fairpricecalculator.html"
+                    id="priceLink"
+                >
+                    Fair Price Calculator
+                </a>
+
+
+                <a
+                    href="map.html"
+                    id="mapLink"
+                >
+                    Map
+                </a>
+
+            </div>
+
+
+            <!-- Language -->
+
+            <div class="language-container">
+
+                <span>
+                    🌐
+                </span>
+
+
+                <select id="languageSelector">
+
+                    <option value="en">
+                        English
+                    </option>
+
+
+                    <option value="hi">
+                        हिन्दी
+                    </option>
+
+                </select>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <h1>
+                    KrishiFarm 🌾
+                </h1>
+
+
+                <p id="heroTagline">
+                    Share, Rent and Exchange Resources Easily
+                </p>
+
+
+                <p
+                    class="hero-description"
+                    id="heroDescription"
+                >
+
+                    A rural resource exchange platform where
+                    farmers can share, rent, sell and exchange
+                    agricultural resources.
+
+                </p>
+
+
+                <br>
+
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="resources.html"
+                        class="primary-btn"
+                        id="exploreBtn"
+                    >
+                        Explore Resources
+                    </a>
+
+
+                    <a
+                        href="map.html"
+                        class="secondary-btn"
+                        id="nearbyBtn"
+                    >
+                        📍 Find Nearby Resources
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= RESOURCE SEARCH ================= -->
+
+        <section class="homepage-resource-search">
+
+            <div class="resource-search-box">
+
+                <h2>
+                    Find Agricultural Resources
+                </h2>
+
+
+                <div class="search-row">
+
+
+                    <!-- Search -->
+
+                    <div class="search-input-wrapper">
+
+                        <span class="search-icon">
+                            🔍
+                        </span>
+
+
+                        <input
+                            type="text"
+                            id="homeSearchResource"
+                            placeholder="Search tractors, pumps, tools..."
+                        >
+
+                    </div>
+
+
+
+                    <!-- Category -->
+
+                    <select id="homeCategoryFilter">
+
+                        <option value="all">
+                            All Categories
+                        </option>
+
+
+                        <option value="Irrigation">
+                            Irrigation
+                        </option>
+
+
+                        <option value="Equipment">
+                            Equipment
+                        </option>
+
+
+                        <option value="Tools">
+                            Tools
+                        </option>
+
+
+                        <option value="Machines">
+                            Machines
+                        </option>
+
+
+                        <option value="Cattle Feed">
+                            Cattle Feed
+                        </option>
+
+
+                        <option value="Crop Residues">
+                            Crop Residues
+                        </option>
+
+                    </select>
+
+
+
+                    <!-- Buy / Rent -->
+
+                    <select id="homeTypeFilter">
+
+                        <option value="all">
+                            Buy / Rent
+                        </option>
+
+
+                        <option value="Sell">
+                            Buy
+                        </option>
+
+
+                        <option value="Rent">
+                            Rent
+                        </option>
+
+
+                        <option value="Exchange">
+                            Exchange
+                        </option>
+
+                    </select>
+
+
+
+                    <!-- Search Button -->
+
+                    <button
+                        type="button"
+                        id="homeSearchBtn"
+                        class="home-search-btn"
+                    >
+                        Search
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= HOW IT WORKS ================= -->
+
+        <section class="how-section">
+
+            <h2 id="howTitle">
+                How KrishiFarm Works
+            </h2>
+
+
+            <p
+                class="section-subtitle"
+                id="howSubtitle"
+            >
+                Find the resources you need in three simple steps
+            </p>
+
+
+
+            <div class="steps">
+
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+
+                    <div class="step-icon">
+                        🔍
+                    </div>
+
+
+                    <h3 id="searchTitle">
+                        Search
+                    </h3>
+
+
+                    <p id="searchText">
+                        Search for agricultural resources
+                        available near you.
+                    </p>
+
+                </div>
+
+
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+
+                    <div class="step-icon">
+                        ✅
+                    </div>
+
+
+                    <h3 id="selectTitle">
+                        Select
+                    </h3>
+
+
+                    <p id="selectText">
+                        Select the resource that suits
+                        your requirements.
+                    </p>
+
+                </div>
+
+
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+
+                    <div class="step-icon">
+                        📅
+                    </div>
+
+
+                    <h3 id="bookTitle">
+                        Book
+                    </h3>
+
+
+                    <p id="bookText">
+                        Book, rent, buy or exchange
+                        the resource.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= RESOURCE CATEGORIES ================= -->
+
+        <section class="resources-section">
+
+            <h2 id="resourceTitle">
+                What Can You Find?
+            </h2>
+
+
+            <div class="resource-grid">
+
+
+                <div class="resource-card">
+
+                    <span>
+                        🚜
+                    </span>
+
+
+                    <h3 id="equipmentTitle">
+                        Equipment
+                    </h3>
+
+
+                    <p id="equipmentText">
+                        Tractors, harvesters, ploughs
+                        and other farm equipment.
+                    </p>
+
+                </div>
+
+
+
+                <div class="resource-card">
+
+                    <span>
+                        💧
+                    </span>
+
+
+                    <h3 id="irrigationTitle">
+                        Irrigation
+                    </h3>
+
+
+                    <p id="irrigationText">
+                        Pumps, sprinklers, pipes and
+                        irrigation equipment.
+                    </p>
+
+                </div>
+
+
+
+                <div class="resource-card">
+
+                    <span>
+                        🌾
+                    </span>
+
+
+                    <h3 id="feedTitle">
+                        Cattle Feed
+                    </h3>
+
+
+                    <p id="feedText">
+                        Fodder, hay, silage and
+                        animal feed.
+                    </p>
+
+                </div>
+
+
+
+                <div class="resource-card">
+
+                    <span>
+                        🔄
+                    </span>
+
+
+                    <h3 id="exchangeTitle">
+                        Exchange
+                    </h3>
+
+
+                    <p id="exchangeText">
+                        Exchange resources with
+                        other farmers.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= CALL TO ACTION ================= -->
+
+        <section class="cta-section">
+
+            <h2 id="ctaTitle">
+                Have a Resource to Share?
+            </h2>
+
+
+            <p id="ctaText">
+                Help another farmer by renting,
+                selling or exchanging your resources.
+            </p>
+
+
+            <button
+                class="cta-btn"
+                id="listResourceBtn"
+            >
+                List Your Resource
+            </button>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h3>
+            KrishiFarm 🌾
+        </h3>
+
+
+        <p id="footerText">
+            Connecting rural communities through
+            resource sharing.
+        </p>
+
+
+        <p>
+            © 2026 KrishiFarm
+        </p>
+
+    </footer>
+
+
+
+    <!-- ================= LEAFLET MAP JS ================= -->
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+
+    <!-- ================= KRISHIFARM MAIN JS ================= -->
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>
